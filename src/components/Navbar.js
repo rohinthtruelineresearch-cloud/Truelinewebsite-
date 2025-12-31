@@ -1,6 +1,16 @@
 import { NavLink, matchPath, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import {
+  Settings,
+  Package,
+  BookOpen,
+  Shield,
+  FileText,
+  Calendar,
+  Database,
+  ChevronDown
+} from "lucide-react";
 import "./Navbar.css";
 import logoImage from "../images/logo.png";
 
@@ -18,19 +28,19 @@ const navStructure = [
     type: "dropdown",
     label: "Solutions",
     items: [
-      { to: "/services", label: "Services" },
-      { to: "/products", label: "Products" },
-      { to: "/journals-publishing", label: "Journals Publishing" },
-      { to: "/ipr-patents", label: "IPR & Patents" },
+      { to: "/services", label: "Services", icon: Settings },
+      { to: "/products", label: "Products", icon: Package },
+      { to: "/journals-publishing", label: "Journals Publishing", icon: BookOpen },
+      { to: "/ipr-patents", label: "IPR & Patents", icon: Shield },
     ],
   },
   {
     type: "dropdown",
     label: "Resources",
     items: [
-      { to: "/blog", label: "Blog" },
-      { to: "/events", label: "Events" },
-      { to: "/resources", label: "Resource Hub" },
+      { to: "/blog", label: "Blog", icon: FileText },
+      { to: "/events", label: "Events", icon: Calendar },
+      { to: "/resources", label: "Resource Hub", icon: Database },
     ],
   },
   // { type: "link", to: "/careers", label: "Careers" },
@@ -146,17 +156,15 @@ export default function Navbar() {
             return (
               <div
                 key={item.label}
-                className={`navbar__dropdown ${isOpen ? "is-open" : ""} ${
-                  isActive ? "is-active" : ""
-                }`}
+                className={`navbar__dropdown ${isOpen ? "is-open" : ""} ${isActive ? "is-active" : ""
+                  }`}
                 onMouseEnter={() => setOpenDropdown(item.label)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 <button
                   type="button"
-                  className={`navbar__link navbar__link--dropdown ${isOpen ? "is-open" : ""} ${
-                    isActive ? "is-active" : ""
-                  }`}
+                  className={`navbar__link navbar__link--dropdown ${isOpen ? "is-open" : ""} ${isActive ? "is-active" : ""
+                    }`}
                   aria-haspopup="true"
                   aria-expanded={isOpen}
                   onClick={() =>
@@ -175,7 +183,7 @@ export default function Navbar() {
                   }}
                 >
                   {item.label}
-                  <span className="navbar__caret" aria-hidden />
+                  <ChevronDown className="navbar__caret" aria-hidden />
                 </button>
                 <div className="navbar__dropdown-panel" role="menu">
                   {item.items.map((child) => (
@@ -191,7 +199,8 @@ export default function Navbar() {
                       onFocus={() => setOpenDropdown(item.label)}
                       onBlur={handleDropdownBlur}
                     >
-                      {child.label}
+                      {child.icon && <child.icon className="navbar__dropdown-icon" />}
+                      <span>{child.label}</span>
                     </NavLink>
                   ))}
                 </div>

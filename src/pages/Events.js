@@ -134,7 +134,7 @@ const highlightTiles = [
 
 const hostedEvents = [
   {
-    date: "—",
+    date: "June 2023",
     title: "STARTNET & SALEM CHAPTER LAUNCH",
     summary: "Launch event introducing STARTNET and the Salem chapter.",
   },
@@ -144,17 +144,17 @@ const hostedEvents = [
     summary: "Monthly networking meet-up for founders and professionals.",
   },
   {
-    date: "—",
+    date: "May 2023",
     title: "STARTNET ChatGPT & GenAI",
     summary: "Session focused on ChatGPT and Generative AI.",
   },
   {
-    date: "—",
+    date: "April 2023",
     title: "STARTNET Connect Zoom Up Meeting",
     summary: "Virtual Zoom catch-up under STARTNET Connect.",
   },
   {
-    date: "—",
+    date: "March 2023",
     title: "STARTNET Master Class – Prompt Engineering",
     summary: "Masterclass on prompt engineering techniques.",
   },
@@ -179,7 +179,7 @@ const hostedEvents = [
     summary: "Monthly networking session.",
   },
   {
-    date: "—",
+    date: "February 2023",
     title: "STARTNET T2HUB Launching",
     summary: "Launch of T2HUB under STARTNET.",
   },
@@ -189,7 +189,7 @@ const hostedEvents = [
     summary: "Monthly networking session.",
   },
   {
-    date: "—",
+    date: "January 2023",
     title: "STARTCONNECT Blockchain Technology Investors Meet",
     summary: "Investor-focused meetup on blockchain technology.",
   },
@@ -199,27 +199,27 @@ const hostedEvents = [
     summary: "Monthly networking session.",
   },
   {
-    date: "—",
+    date: "December 2022",
     title: "STARTNET Connect Digital Politics Conclave",
     summary: "Conclave on digital politics themes.",
   },
   {
-    date: "—",
+    date: "November 2022",
     title: "STATNET Connect SaaS Master Class",
     summary: "Masterclass focused on SaaS topics.",
   },
   {
-    date: "—",
+    date: "October 2022",
     title: "TN4STARTUP Cycle Rally",
     summary: "Community cycle rally under TN4STARTUP.",
   },
   {
-    date: "—",
+    date: "September 2022",
     title: "STARTNET Connect Digital Conclave Madurai",
     summary: "Digital conclave hosted in Madurai.",
   },
   {
-    date: "—",
+    date: "August 2022",
     title: "STARTNET Connect GenAI Summit & Expo",
     summary: "Summit and expo centered on Generative AI.",
   },
@@ -242,37 +242,37 @@ export default function Events() {
     fetch(`${API_BASE_URL}/api/event-highlights`)
       .then(res => res.json())
       .then(data => {
-        if(Array.isArray(data) && data.length > 0) {
-            const formatted = data.map(h => ({
-                title: h.title,
-                gallery: h.images,
-                image: h.images[0],
-                alt: h.title,
-                _id: h._id
-            }));
-            setHighlights(formatted);
+        if (Array.isArray(data) && data.length > 0) {
+          const formatted = data.map(h => ({
+            title: h.title,
+            gallery: h.images,
+            image: h.images[0],
+            alt: h.title,
+            _id: h._id
+          }));
+          setHighlights(formatted);
         } else {
-            // Fallback to static if no dynamic data
-            setHighlights(highlightTiles);
+          // Fallback to static if no dynamic data
+          setHighlights(highlightTiles);
         }
       })
       .catch(err => {
-          console.error("Error fetching highlights", err);
-          setHighlights(highlightTiles);
+        console.error("Error fetching highlights", err);
+        setHighlights(highlightTiles);
       });
 
     fetch(`${API_BASE_URL}/api/hosted-programmes`)
       .then(res => res.json())
       .then(data => {
-          if(Array.isArray(data) && data.length > 0) {
-              setProgrammes(data);
-          } else {
-              setProgrammes(hostedEvents);
-          }
+        if (Array.isArray(data) && data.length > 0) {
+          setProgrammes(data);
+        } else {
+          setProgrammes(hostedEvents);
+        }
       })
       .catch(err => {
-          console.error("Error fetching hosted programmes", err);
-          setProgrammes(hostedEvents);
+        console.error("Error fetching hosted programmes", err);
+        setProgrammes(hostedEvents);
       });
   }, []);
 
@@ -485,7 +485,7 @@ export default function Events() {
                   </article>
                 );
               })}
-          </div>
+            </div>
           </div>
         </div>
       </section>

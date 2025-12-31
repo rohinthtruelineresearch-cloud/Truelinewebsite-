@@ -3,17 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Target, Eye, Award, Users, Lightbulb, Heart, Rocket, GraduationCap, Landmark, ShieldCheck, Workflow } from "lucide-react";
+import { Target, Eye, Award, Users, Lightbulb, Heart, Rocket, GraduationCap, Landmark, ShieldCheck, Workflow, Linkedin } from "lucide-react";
 import Arun from "../images/Arun.jpg";
-import NagarajImage from "../images/Nagaraj.png";
+import NagarajImage from "../images/nagaraj-new.jpg";
 import CircularGallery from "./CircularGallery";
 import ResourceHeroAnimation from "../components/ResourceHeroAnimation";
 import eventHighlight from "../images/events/AI Strategy & Implementation.png";
 import { API_BASE_URL } from "../lib/api";
 
 const getImageUrl = (url) => {
-  if(!url) return "";
-  if(url.startsWith('http')) return url;
+  if (!url) return "";
+  if (url.startsWith('http')) return url;
   return `${API_BASE_URL}/${url}`;
 };
 
@@ -34,7 +34,7 @@ export default function About() {
     fetch(`${API_BASE_URL}/api/showcases`)
       .then(res => res.json())
       .then(data => {
-        if(Array.isArray(data)) setShowcases(data);
+        if (Array.isArray(data)) setShowcases(data);
       })
       .catch(err => console.error("Error fetching showcases:", err));
   }, []);
@@ -148,8 +148,8 @@ export default function About() {
         const normalised =
           labelSeed.replace(/[_-]+/g, " ").trim().length > 1
             ? labelSeed
-                .replace(/[_-]+/g, " ")
-                .replace(/\b\w/g, (char) => char.toUpperCase())
+              .replace(/[_-]+/g, " ")
+              .replace(/\b\w/g, (char) => char.toUpperCase())
             : `Event Highlight ${index + 1}`;
         return { image: src, text: normalised };
       });
@@ -248,7 +248,7 @@ export default function About() {
 
   const teamStats = [
     {
-      value: 150,
+      value: 50,
       suffix: "+",
       label: "Team Members",
       accent: "from-[rgba(0,169,157,0.15)] to-[rgba(0,44,113,0.08)]",
@@ -268,14 +268,7 @@ export default function About() {
       accent: "from-[rgba(94,88,88,0.1)] to-[rgba(0,44,113,0.08)]",
       textColor: "text-[rgba(0,44,113,0.9)]",
     },
-  {
-    value: 20,
-    suffix: "+",
-    label: "Countries Served",
-    accent: "from-[rgba(0,169,157,0.12)] to-[rgba(94,88,88,0.08)]",
-    textColor: "text-[rgba(0,169,157,0.95)]",
-  },
-];
+  ];
 
   const teamSpotlight = [
     {
@@ -342,9 +335,7 @@ export default function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-200/80">Visionary Leadership</p>
                 <h3 className="text-3xl font-semibold leading-tight sm:text-[2.2rem]">{leader.name}</h3>
                 <p className="text-sm font-medium uppercase tracking-[0.28em] text-white/60">{leader.role}</p>
-                <span className="text-[11px] uppercase tracking-[0.32em] text-white/40 block">
-                  Trueline Research · Board & Strategy Office
-                </span>
+
               </div>
 
               <div className="relative mx-auto flex h-64 w-64 items-center justify-center rounded-[28px] border border-white/12 bg-gradient-to-tr from-white/5 via-transparent to-transparent shadow-[0_24px_60px_-30px_rgba(59,130,246,0.55)]">
@@ -385,8 +376,8 @@ export default function About() {
               </div>
 
               <div className="relative mx-6 mb-6 rounded-3xl border border-white/10 bg-white/8 px-5 py-4 backdrop-blur-sm">
-                <div className="flex items-center gap-3">
-                  <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/10 bg-white/10">
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full border border-white/10 bg-white/10">
                     {leader.image ? (
                       <img src={leader.image} alt="" className="h-full w-full object-cover" />
                     ) : (
@@ -395,17 +386,22 @@ export default function About() {
                       </span>
                     )}
                   </div>
-                  <div className="flex-1 text-left text-xs uppercase tracking-[0.24em] text-white/60">
+                  <div className="flex-1 text-left text-xs uppercase tracking-[0.24em] text-white/60 min-w-[200px]">
                     <span className="block font-semibold text-white/80">@truelineresearch</span>
                     <span className="text-white/40">Available for partnerships</span>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => navigate("/contact")}
-                    className="rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white shadow-[0_18px_45px_-24px_rgba(59,130,246,0.65)] transition-transform duration-300 hover:scale-[1.05]"
-                  >
-                    Contact
-                  </button>
+                  <div className="flex items-center gap-3">
+
+                    <a
+                      href="https://www.linkedin.com/in/nagaraj-varatharaj/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-full bg-[#0077b5] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.24em] text-white shadow-lg transition-transform duration-300 hover:scale-[1.05] hover:bg-[#008cc9]"
+                    >
+                      <Linkedin className="h-3.5 w-3.5" />
+                      LinkedIn
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -537,7 +533,7 @@ export default function About() {
                 Trueline Research Private Limited delivers AI solutions for real business impact. We partner with startups and corporates to build and deploy LLM assistants, CRM automation, analytics, and AI-enabled web platforms that sharpen decisions and accelerate execution.
               </p>
               <p className="text-xl leading-relaxed">We also support higher-education and research ecosystems through innovation enablement, structured guidance, and milestone-based delivery—helping teams move from ideas to measurable outcomes.</p>
-          
+
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -545,7 +541,7 @@ export default function About() {
                 <Target className="w-12 h-12 text-[#00A99D] mb-4" />
                 <h3 className="text-2xl font-bold text-[#2C3E50] mb-4">Our Mission</h3>
                 <p className="text-[#2C3E50]/80 leading-relaxed">
-                To empower startups, corporates, and institutions with practical AI and research enablement—by delivering clear strategy, reliable solutions, and hands-on support that improves productivity, accelerates innovation, and creates measurable outcomes.
+                  To empower startups, corporates, and institutions with practical AI and research enablement—by delivering clear strategy, reliable solutions, and hands-on support that improves productivity, accelerates innovation, and creates measurable outcomes.
                 </p>
               </div>
 
@@ -553,15 +549,15 @@ export default function About() {
                 <Eye className="w-12 h-12 text-[#00A99D] mb-4" />
                 <h3 className="text-2xl font-bold text-[#2C3E50] mb-4">Our Vision</h3>
                 <p className="text-[#2C3E50]/80 leading-relaxed">
-              To be a trusted partner for AI-led growth and research excellence—building an ecosystem where organizations can adopt responsible AI, scale digital capabilities, protect innovation, and transform ideas into real-world impact.
+                  To be a trusted partner for AI-led growth and research excellence—building an ecosystem where organizations can adopt responsible AI, scale digital capabilities, protect innovation, and transform ideas into real-world impact.
                 </p>
               </div>
             </div>
           </div>
         </div>
-        
+
       </section>
-      
+
 
       <section className="py-20 bg-slate-900">
         <div className="container mx-auto px-6">
@@ -571,8 +567,8 @@ export default function About() {
             </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Snapshots From Our Tech & Innovation Collaborations</h2>
             <p className="text-lg text-white/70">
-            Explore real moments from our work with startups, innovation labs, and tech enterprises—highlighting AI implementation sprints, infrastructure optimization
-             projects, platform deployments, and digital transformation initiatives.
+              Explore real moments from our work with startups, innovation labs, and tech enterprises—highlighting AI implementation sprints, infrastructure optimization
+              projects, platform deployments, and digital transformation initiatives.
             </p>
           </div>
           <div className="relative h-[600px] rounded-[32px] border border-white/10 bg-white/5 p-2 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.8)]">
@@ -615,7 +611,7 @@ export default function About() {
         </div>
       </section>
 
-            <section
+      <section
         ref={valuesRef}
         className="py-20"
         style={{ background: "linear-gradient(145deg, #F4FBFA 0%, #FFFFFF 75%)" }}
@@ -723,14 +719,14 @@ export default function About() {
         </div>
       </section>
 
-            <section ref={teamRef} className="py-20" style={{ backgroundColor: "#F7F9FA" }}>
+      <section ref={teamRef} className="py-20" style={{ backgroundColor: "#F7F9FA" }}>
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-bold text-center text-[#2C3E50] mb-4">Our Team</h2>
             <p className="text-xl text-[#2C3E50]/80 text-center mb-12">
               A multidisciplinary team delivering research, AI, and technology solutions.
             </p>
-            <div className="team-stat-row grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">
+            <div className="team-stat-row grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
               {teamStats.map((stat) => (
                 <div
                   key={stat.label}
@@ -773,7 +769,7 @@ export default function About() {
         </div>
       </section>
 
-      
+
     </div>
   );
 }

@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
 import { API_BASE_URL } from "../lib/api";
 import ResourceHeroAnimation from "../components/ResourceHeroAnimation";
-import { Shield, FileText, Zap, BarChart, Users, Globe, Database, CircuitBoard, Layers } from "lucide-react";
+import { Shield, FileText, Zap, BarChart, Users, Globe, Database, CircuitBoard, Layers, Construction } from "lucide-react";
 
 export default function Resources() {
   const [resources, setResources] = useState([]);
 
   // Icon Mapping
   const iconMap = {
-      'Shield': Shield,
-      'FileText': FileText,
-      'Zap': Zap,
-      'BarChart': BarChart,
-      'Users': Users,
-      'Globe': Globe,
-      'Database': Database,
-      'CircuitBoard': CircuitBoard,
-      'Layers': Layers
+    'Shield': Shield,
+    'FileText': FileText,
+    'Zap': Zap,
+    'BarChart': BarChart,
+    'Users': Users,
+    'Globe': Globe,
+    'Database': Database,
+    'CircuitBoard': CircuitBoard,
+    'Layers': Layers
   };
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/resources`)
       .then((res) => res.json())
       .then((data) => {
-          if(Array.isArray(data)) setResources(data);
+        if (Array.isArray(data)) setResources(data);
       })
       .catch((err) => console.error("Failed to fetch resources", err));
   }, []);
@@ -52,46 +52,51 @@ export default function Resources() {
       <section className="py-20 bg-[#0B0F19]">
         <div className="container mx-auto px-6">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {resources.length === 0 ? (
-                 <div className="col-span-3 text-center text-gray-400 py-10">
-                     <p>No resources available at the moment.</p>
-                     <p className="text-sm mt-2 opacity-50 text-white">Admins: Add resources from the dashboard.</p>
-                 </div>
-              ) : (
-                  resources.map((res) => {
-                    const IconComponent = iconMap[res.icon] || FileText;
-                    return (
-                        <article key={res._id} className="group relative rounded-3xl border border-white/10 bg-[#0F1420] p-8 transition-all hover:bg-[#131b2b] hover:shadow-2xl hover:shadow-black/50 flex flex-col items-center text-center h-full">
-                          
-                          {/* Icon Container */}
-                          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-[#0B0F19] transition-transform group-hover:scale-110 group-hover:border-[#00A99D]/50 text-[#00A99D]">
-                            <IconComponent size={32} strokeWidth={1.5} />
-                          </div>
+            {resources.length === 0 ? (
+              <div className="col-span-3 text-center text-gray-400 py-16 flex flex-col items-center justify-center">
+                <div className="mb-6 rounded-full bg-white/5 p-6 ring-1 ring-white/10">
+                  <Construction className="h-12 w-12 text-[#00A99D]" strokeWidth={1.5} />
+                </div>
+                <h2 className="text-2xl font-semibold text-white mb-2">Page Under Construction</h2>
+                <p className="max-w-md mx-auto text-white/60">
+                  We are currently curating high-impact resources for you. Check back soon for updates.
+                </p>
+              </div>
+            ) : (
+              resources.map((res) => {
+                const IconComponent = iconMap[res.icon] || FileText;
+                return (
+                  <article key={res._id} className="group relative rounded-3xl border border-white/10 bg-[#0F1420] p-8 transition-all hover:bg-[#131b2b] hover:shadow-2xl hover:shadow-black/50 flex flex-col items-center text-center h-full">
 
-                          {/* Category Label */}
-                          <div className="mb-4 text-[10px] uppercase font-bold tracking-[0.2em] text-[#A855F7]">
-                             {res.category || "RESOURCE"}
-                          </div>
+                    {/* Icon Container */}
+                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-[#0B0F19] transition-transform group-hover:scale-110 group-hover:border-[#00A99D]/50 text-[#00A99D]">
+                      <IconComponent size={32} strokeWidth={1.5} />
+                    </div>
 
-                          {/* Title */}
-                          <h2 className="mb-3 text-xl font-bold text-white transition-colors group-hover:text-[#00A99D] leading-tight">
-                              {res.title}
-                          </h2>
+                    {/* Category Label */}
+                    <div className="mb-4 text-[10px] uppercase font-bold tracking-[0.2em] text-[#A855F7]">
+                      {res.category || "RESOURCE"}
+                    </div>
 
-                          {/* Description */}
-                          <p className="mb-8 text-sm leading-relaxed text-gray-400 flex-grow">
-                             {res.description}
-                          </p>
+                    {/* Title */}
+                    <h2 className="mb-3 text-xl font-bold text-white transition-colors group-hover:text-[#00A99D] leading-tight">
+                      {res.title}
+                    </h2>
 
-                          {/* Link */}
-                          <a href={res.linkUrl} className="group/link inline-flex items-center gap-2 text-sm font-semibold text-[#A855F7] transition-colors hover:text-[#c084fc] mt-auto">
-                              {res.linkText}
-                              <span className="transition-transform group-hover/link:translate-x-1">→</span>
-                          </a>
-                        </article>
-                    );
-                  })
-              )}
+                    {/* Description */}
+                    <p className="mb-8 text-sm leading-relaxed text-gray-400 flex-grow">
+                      {res.description}
+                    </p>
+
+                    {/* Link */}
+                    <a href={res.linkUrl} className="group/link inline-flex items-center gap-2 text-sm font-semibold text-[#A855F7] transition-colors hover:text-[#c084fc] mt-auto">
+                      {res.linkText}
+                      <span className="transition-transform group-hover/link:translate-x-1">→</span>
+                    </a>
+                  </article>
+                );
+              })
+            )}
           </div>
         </div>
       </section>

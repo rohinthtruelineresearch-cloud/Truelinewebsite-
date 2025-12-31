@@ -7,13 +7,13 @@ const quickLinks = [
   },
   {
     label: "Call the engagement desk",
-    value: "+91 95788 73583",
-    href: "tel:+919578873583",
+    value: "+91 95788 73584",
+    href: "tel:+919578873584",
   },
   {
     label: "Visit our Salem HQ",
-    value: "Meridian Towers, Thoraipakkam",
-    href: "https://maps.google.com/?q=Meridian+Towers+Thoraipakkam",
+    value: "Building No. 7/232-19, Devi Towers, Kalipatti Privu Road, Vaikuntham, Sankari, Salem, Tamil Nadu – 637103",
+    href: "https://maps.google.com/?q=Building+No.+7/232-19,+Devi+Towers,+Kalipatti+Privu+Road,+Vaikuntham,+Sankari,+Salem,+Tamil+Nadu+%E2%80%93+637103",
   },
 ];
 
@@ -23,16 +23,28 @@ const quickFacts = [
   { value: "94 NPS", label: "Client satisfaction" },
 ];
 
+const mainHQ = {
+  label: "Salem Main HQ",
+  address: [
+    "Building No. 7/232-19, Devi Towers",
+    "Kalipatti Privu Road, Vaikuntham",
+    "Sankari, Salem, Tamil Nadu – 637103",
+  ],
+  mapsHref:
+    "https://www.google.com/maps/place/Trueline+Research+Private+Limited/@11.5255774,77.9445763,17z/data=!3m1!4b1!4m6!3m5!1s0x3babe12b38a26675:0xbc48836741036261!8m2!3d11.5255722!4d77.9471512!16s%2Fg%2F11sf5ncts1?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D",
+};
+
 const branchLocations = [
   {
     label: "Salem Branch",
     address: [
-      "Building No: 7/232-26, Devi Towers",
-      "First Floor (Left Side), Kalipatti Privu Road",
-      "Vaikuntham, Sankari, Salem, Tamil Nadu - 637103",
+      "Sona Valliappa Campus",
+      "Kandarkulamanickam (KKM)",
+      "Kakkapalayam to Attayampatti Road",
+      "TK, Sankari, Salem, Tamil Nadu 637504",
     ],
     mapsHref:
-      "https://www.google.com/maps/place/Trueline+Research+Private+Limited/@11.5255774,77.9445763,17z/data=!3m1!4b1!4m6!3m5!1s0x3babe12b38a26675:0xbc48836741036261!8m2!3d11.5255722!4d77.9471512!16s%2Fg%2F11sf5ncts1?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D",
+      "https://dates.google.com/?q=Sona+Valliappa+Campus+Kandarkulamanickam+Salem",
   },
   {
     label: "Kerala Branch",
@@ -123,7 +135,7 @@ export default function Contact() {
       "",
       form.message,
     ].join("\n");
-    const whatsappUrl = `https://wa.me/919578873583?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/919578873584?text=${encodeURIComponent(
       text,
     )}`;
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
@@ -272,9 +284,8 @@ export default function Contact() {
 
               {status.msg && (
                 <div
-                  className={`rounded-xl px-4 py-3 text-sm font-medium ${
-                    status.ok ? "bg-[#00A99D]/10 text-[#006d68]" : "bg-rose-50 text-rose-600"
-                  }`}
+                  className={`rounded-xl px-4 py-3 text-sm font-medium ${status.ok ? "bg-[#00A99D]/10 text-[#006d68]" : "bg-rose-50 text-rose-600"
+                    }`}
                 >
                   {status.msg}
                 </div>
@@ -303,24 +314,27 @@ export default function Contact() {
           <h2 className="text-2xl font-semibold text-center uppercase tracking-[0.32em] text-[#00A99D]/80">
             Branch offices
           </h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            {branchLocations.map((branch) => (
-              <a
-                key={branch.label}
-                href={branch.mapsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group rounded-2xl border border-slate-200 bg-white p-6 text-left transition hover:border-[#00A99D]/40 hover:shadow-lg"
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#00A99D]">
-                  {branch.label}
-                </p>
-                <div className="mt-2 space-y-1 text-base text-slate-600">
-                  {branch.address.map((line) => (
-                    <p key={line}>{line}</p>
-                  ))}
+          <div className="space-y-6">
+            {/* Main HQ */}
+            <a
+              href={mainHQ.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-[#00A99D]/5 p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-[#00A99D]/40 hover:shadow-xl hover:shadow-[#00A99D]/10"
+            >
+              <div className="flex flex-col items-center gap-6">
+                <div className="space-y-4 w-full">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#00A99D] flex items-center justify-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-[#00A99D] animate-pulse"></span>
+                    {mainHQ.label}
+                  </p>
+                  <div className="space-y-1 text-lg text-slate-700 font-medium max-w-2xl mx-auto">
+                    {mainHQ.address.map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
+                  </div>
                 </div>
-                <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400 group-hover:text-[#00A99D]">
+                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400 group-hover:text-[#00A99D] bg-white px-6 py-3 rounded-full shadow-sm group-hover:shadow-md transition-all group-hover:bg-[#00A99D] group-hover:text-white">
                   View on Maps
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -328,14 +342,52 @@ export default function Contact() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.5"
-                    className="h-4 w-4"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
                   >
                     <path d="M7 17 17 7" />
                     <path d="M8 7h9v9" />
                   </svg>
                 </span>
-              </a>
-            ))}
+              </div>
+            </a>
+
+            {/* Branches Grid */}
+            <div className="grid gap-6 md:grid-cols-2">
+              {branchLocations.map((branch) => (
+                <a
+                  key={branch.label}
+                  href={branch.mapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-[#00A99D]/5 p-8 text-center transition duration-300 hover:-translate-y-1 hover:border-[#00A99D]/40 hover:shadow-xl hover:shadow-[#00A99D]/10 flex flex-col items-center h-full"
+                >
+                  <div className="flex-1 space-y-4 w-full">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#00A99D]">
+                      {branch.label}
+                    </p>
+                    <div className="space-y-1 text-base text-slate-600">
+                      {branch.address.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  </div>
+                  <span className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400 group-hover:text-[#00A99D] bg-white px-6 py-3 rounded-full shadow-sm group-hover:shadow-md transition-all group-hover:bg-[#00A99D] group-hover:text-white">
+                    View on Maps
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    >
+                      <path d="M7 17 17 7" />
+                      <path d="M8 7h9v9" />
+                    </svg>
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

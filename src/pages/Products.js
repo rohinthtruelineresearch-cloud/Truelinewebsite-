@@ -37,11 +37,66 @@ export default function Products() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [products, setProducts] = useState([]);
 
+  // Fallback data in case API is not running
+  const fallbackProducts = [
+    {
+      id: "p1",
+      category: "Innovation Tooling",
+      title: "Web App Suite",
+      description: "Comprehensive suite for building and managing modern web applications.",
+      accent: "#22D3EE",
+      image: localImages["Web App Suite"]
+    },
+    {
+      id: "p2",
+      category: "AI Solutions",
+      title: "Chatbots",
+      description: "Intelligent conversational agents for customer support and engagement.",
+      accent: "#6366F1",
+      image: localImages["Chatbots"]
+    },
+    {
+      id: "p3",
+      category: "AI Solutions",
+      title: "AI Agents",
+      description: "Autonomous agents designed to automate complex workflows.",
+      accent: "#A855F7",
+      image: localImages["AI Agents"]
+    },
+    {
+      id: "p4",
+      category: "Research Software",
+      title: "Manuscript Acceleration Suite",
+      description: "Tools to speed up the writing and publishing process for researchers.",
+      accent: "#EC4899",
+      image: localImages["Manuscript Acceleration Suite"]
+    },
+    {
+      id: "p5",
+      category: "Research Software",
+      title: "IPR Commercialisation Suite",
+      description: "Streamline the process of intellectual property rights commercialisation.",
+      accent: "#F43F5E",
+      image: localImages["IPR Commercialisation Suite"]
+    },
+    {
+      id: "p6",
+      category: "Data Analytics",
+      title: "Accreditation Impact Suite",
+      description: "Analytics tools to measure and improve institutional accreditation impact.",
+      accent: "#10B981",
+      image: localImages["Accreditation Impact Suite"]
+    }
+  ];
+
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/products`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
       .then((data) => {
-        if (Array.isArray(data)) {
+        if (Array.isArray(data) && data.length > 0) {
           // Normalize backend data to match frontend component structure
           const formattedProducts = data.map(p => ({
             id: p._id,
@@ -54,9 +109,14 @@ export default function Products() {
             image: p.imageUrl || localImages[p.title] || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000",
           }));
           setProducts(formattedProducts);
+        } else {
+          setProducts(fallbackProducts);
         }
       })
-      .catch((err) => console.error("Failed to fetch products:", err));
+      .catch((err) => {
+        console.error("Failed to fetch products, using fallback:", err);
+        setProducts(fallbackProducts);
+      });
   }, []);
 
   const filteredCatalog = useMemo(
@@ -69,7 +129,7 @@ export default function Products() {
 
   return (
     <div className="min-h-screen bg-[#01030C] pt-24 text-white">
-      
+
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e3a5f,transparent_70%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(120deg,#0b1120_0%,#05122d_45%,#020617_100%)]" />
@@ -90,9 +150,9 @@ export default function Products() {
         ))}
 
         <div className="container relative mx-auto px-6 py-28">
-          
+
           <div className="max-w-3xl space-y-6">
-            
+
             <span className="inline-flex items-center rounded-full border border-white/10 bg-white/10 px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-white/75">
               Product Platform
             </span>
@@ -102,7 +162,7 @@ export default function Products() {
             <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl">
               Real-time data streaming and ETL platform processing research data at scale. Integrate lab instruments, sensors, and databases with automated quality checks, schema evolution, and full data lineage tracking for reproducible research.
             </p>
-            
+
           </div>
 
           <div className="absolute right-0 top-12 hidden max-w-xl rotate-2 rounded-[48px] border border-white/10 bg-white/10 backdrop-blur-md p-10 lg:block">
@@ -124,11 +184,10 @@ export default function Products() {
                   key={category}
                   type="button"
                   onClick={() => setActiveCategory(category)}
-                  className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
-                    isActive
+                  className={`rounded-full px-5 py-2 text-sm font-semibold transition ${isActive
                       ? "bg-gradient-to-r from-[#22D3EE] to-[#6366F1] text-white shadow-[0_10px_30px_-18px_rgba(99,102,241,0.8)]"
                       : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>

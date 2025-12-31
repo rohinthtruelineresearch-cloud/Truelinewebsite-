@@ -219,21 +219,21 @@ export default function Home() {
   ];
 
 
-  
+
   // Icon Mapping for dynamic resources
   const iconMap = {
-      'Shield': Shield,
-      'FileText': FileText,
-      'Zap': Zap,
-      'BarChart': BarChart,
-      'Users': Users,
-      'Globe': Globe,
-      'Database': Database,
-      'CircuitBoard': CircuitBoard,
-      'Layers': Layers,
-      'Cpu': Cpu,
-      'LineChart': LineChart,
-      'Target': Target
+    'Shield': Shield,
+    'FileText': FileText,
+    'Zap': Zap,
+    'BarChart': BarChart,
+    'Users': Users,
+    'Globe': Globe,
+    'Database': Database,
+    'CircuitBoard': CircuitBoard,
+    'Layers': Layers,
+    'Cpu': Cpu,
+    'LineChart': LineChart,
+    'Target': Target
   };
 
   const [learningResources] = useState([
@@ -702,73 +702,73 @@ export default function Home() {
           ))}
         </div>
 
-          <div
-            className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
-            data-desktop-x="-360"
-            data-desktop-y="-220"
-            data-mobile-x="-190"
-            data-mobile-y="-200"
-            data-mobile-scale="0.6"
-          >
-            <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-blue-400/35 bg-white/5 backdrop-blur-md shadow-[0_20px_45px_-28px_rgba(56,189,248,0.65)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
-              <Cpu className="h-7 w-7 text-blue-300 sm:h-8 sm:w-8 lg:h-9 lg:w-9" />
-            </div>
+        <div
+          className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
+          data-desktop-x="-360"
+          data-desktop-y="-220"
+          data-mobile-x="-190"
+          data-mobile-y="-200"
+          data-mobile-scale="0.6"
+        >
+          <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-blue-400/35 bg-white/5 backdrop-blur-md shadow-[0_20px_45px_-28px_rgba(56,189,248,0.65)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
+            <Cpu className="h-7 w-7 text-blue-300 sm:h-8 sm:w-8 lg:h-9 lg:w-9" />
           </div>
+        </div>
 
-          <div
-            className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
-            data-desktop-x="360"
-            data-desktop-y="-220"
-            data-mobile-x="190"
-            data-mobile-y="-200"
-            data-mobile-scale="0.6"
-          >
-            <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-pink-400/35 bg-white/5 backdrop-blur-md shadow-[0_24px_52px_-32px_rgba(236,72,153,0.55)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
-              <Zap className="h-8 w-8 text-pink-300 sm:h-9 sm:w-9 lg:h-10 lg:w-10" />
-            </div>
+        <div
+          className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
+          data-desktop-x="360"
+          data-desktop-y="-220"
+          data-mobile-x="190"
+          data-mobile-y="-200"
+          data-mobile-scale="0.6"
+        >
+          <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-pink-400/35 bg-white/5 backdrop-blur-md shadow-[0_24px_52px_-32px_rgba(236,72,153,0.55)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
+            <Zap className="h-8 w-8 text-pink-300 sm:h-9 sm:w-9 lg:h-10 lg:w-10" />
           </div>
+        </div>
 
-          <div
-            className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
-            data-desktop-x="-340"
-            data-desktop-y="260"
-            data-mobile-x="-180"
-            data-mobile-y="190"
-            data-mobile-scale="0.62"
-          >
-            <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-emerald-400/35 bg-white/5 backdrop-blur-md shadow-[0_24px_52px_-32px_rgba(52,211,153,0.55)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
-              <Atom className="h-7 w-7 text-emerald-300 sm:h-8 sm:w-8 lg:h-9 lg:w-9" />
-            </div>
+        <div
+          className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
+          data-desktop-x="-340"
+          data-desktop-y="260"
+          data-mobile-x="-180"
+          data-mobile-y="190"
+          data-mobile-scale="0.62"
+        >
+          <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-emerald-400/35 bg-white/5 backdrop-blur-md shadow-[0_24px_52px_-32px_rgba(52,211,153,0.55)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
+            <Atom className="h-7 w-7 text-emerald-300 sm:h-8 sm:w-8 lg:h-9 lg:w-9" />
           </div>
+        </div>
 
-          <div
-            className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
-            data-desktop-x="340"
-            data-desktop-y="260"
-            data-mobile-x="180"
-            data-mobile-y="200"
-            data-mobile-scale="0.62"
-          >
-            <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-cyan-400/35 bg-white/5 backdrop-blur-md shadow-[0_24px_52px_-32px_rgba(45,212,191,0.55)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
-              <Globe className="h-7 w-7 text-cyan-300 sm:h-8 sm:w-8 lg:h-9 lg:w-9" />
-            </div>
+        <div
+          className="floating-icon pointer-events-none absolute top-1/2 left-1/2"
+          data-desktop-x="340"
+          data-desktop-y="260"
+          data-mobile-x="180"
+          data-mobile-y="200"
+          data-mobile-scale="0.62"
+        >
+          <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-cyan-400/35 bg-white/5 backdrop-blur-md shadow-[0_24px_52px_-32px_rgba(45,212,191,0.55)] sm:h-28 sm:w-28 lg:h-32 lg:w-32">
+            <Globe className="h-7 w-7 text-cyan-300 sm:h-8 sm:w-8 lg:h-9 lg:w-9" />
           </div>
+        </div>
 
         <div className="container mx-auto px-8 md:px-24 lg:px-40 pt-28 pb-16 lg:pb-24 relative z-10 flex flex-col items-center justify-center">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
-         
+
             <h1 className="hero-title text-5xl md:text-7xl font-bold mb-6 text-slate-100">
               <span className="bg-gradient-to-r from-[#FDE68A] via-[#FCA5A5] to-[#F472B6] bg-clip-text text-transparent drop-shadow-[0_6px_18px_rgba(244,114,182,0.45)]">
                 Transforming Innovation Into Impact{" "}
               </span>{" "}
-              
+
               <RotatingText
                 texts={[
                   "LLM assistants",
                   "Automation",
                   "Analytics",
                   "AI Web Platforms",
-                  
+
                 ]}
                 mainClassName="px-2 sm:px-2 md:px-3 bg-transparent text-slate-100 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
                 staggerFrom={"last"}
@@ -781,11 +781,11 @@ export default function Home() {
                 rotationInterval={4000}
               />
               <span className="block font-bold text-[#CDB4FF]">
-               
+
               </span>
             </h1>
             <p className="text-base md:text-3xl text-slate-200 leading-relaxed drop-shadow-[0_2px_6px_rgba(0,44,113,0.3)]">
-             AI solutions and research enablement for startups, corporates, and academia—built for measurable outcomes and scalable deployment.
+              AI solutions and research enablement for startups, corporates, and academia—built for measurable outcomes and scalable deployment.
             </p>
             <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -814,28 +814,6 @@ export default function Home() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="stat-card tech-card p-8 rounded-2xl text-center group">
-              <div className="inline-flex p-4 bg-blue-500/20 rounded-xl mb-4 group-hover:scale-110 transition-transform">
-                <TrendingUp className="w-12 h-12 text-blue-400" />
-              </div>
-              <h3 className="text-4xl font-bold text-black mb-2">
-                <CountUp from={0} to={500} duration={1.5} className="inline-block" />
-                +
-              </h3>
-              <p className="text-black text-lg font-semibold">Outcome-Driven Delivery
-                
-              </p><h5 className="text-black text-lg ">Clear milestones, disciplined execution, measurable results.</h5>
-            </div>
-            <div className="stat-card tech-card p-8 rounded-2xl text-center group">
-              <div className="inline-flex p-4 bg-green-500/20 rounded-xl mb-4 group-hover:scale-110 transition-transform">
-                <Users className="w-12 h-12 text-green-400" />
-              </div>
-              <h3 className="text-4xl font-bold text-black mb-2">
-                <CountUp from={0} to={150} duration={1.5} className="inline-block" />
-                +
-              </h3>
-              <p className="text-black text-lg font-semibold">End-to-End AI Enablement</p><h5 className="text-black text-lg ">From strategy and build to deployment and scale.</h5>
-            </div>
-            <div className="stat-card tech-card p-8 rounded-2xl text-center group">
               <div className="inline-flex p-4 bg-orange-500/20 rounded-xl mb-4 group-hover:scale-110 transition-transform">
                 <Award className="w-12 h-12 text-orange-400" />
               </div>
@@ -844,6 +822,28 @@ export default function Home() {
                 +
               </h3>
               <p className="text-black text-lg font-semibold">Unified Support for Academia & Industry</p><h5 className="text-black text-lg ">AI, research enablement, IPR support, and ranking readiness.</h5>
+            </div>
+            <div className="stat-card tech-card p-8 rounded-2xl text-center group">
+              <div className="inline-flex p-4 bg-green-500/20 rounded-xl mb-4 group-hover:scale-110 transition-transform">
+                <Users className="w-12 h-12 text-green-400" />
+              </div>
+              <h3 className="text-4xl font-bold text-black mb-2">
+                <CountUp from={0} to={100} duration={1.5} className="inline-block" />
+                +
+              </h3>
+              <p className="text-black text-lg font-semibold">End-to-End AI Enablement</p><h5 className="text-black text-lg ">From strategy and build to deployment and scale.</h5>
+            </div>
+            <div className="stat-card tech-card p-8 rounded-2xl text-center group">
+              <div className="inline-flex p-4 bg-blue-500/20 rounded-xl mb-4 group-hover:scale-110 transition-transform">
+                <TrendingUp className="w-12 h-12 text-blue-400" />
+              </div>
+              <h3 className="text-4xl font-bold text-black mb-2">
+                <CountUp from={0} to={100} duration={1.5} className="inline-block" />
+                +
+              </h3>
+              <p className="text-black text-lg font-semibold">Outcome-Driven Delivery
+
+              </p><h5 className="text-black text-lg ">Clear milestones, disciplined execution, measurable results.</h5>
             </div>
           </div>
         </div>
@@ -1114,10 +1114,10 @@ export default function Home() {
               </span>
               <div className="flex items-start gap-4">
                 <div className="hidden sm:block text-[#8B5CF6]">
-                    {(() => {
-                        const Icon = iconMap[selectedResource.iconName] || FileText;
-                        return <Icon size={48} strokeWidth={1.6} />;
-                    })()}
+                  {(() => {
+                    const Icon = iconMap[selectedResource.iconName] || FileText;
+                    return <Icon size={48} strokeWidth={1.6} />;
+                  })()}
                 </div>
                 <div>
                   <h3 id={`resource-${selectedResource.id}-title`} className="text-2xl sm:text-3xl font-semibold leading-tight">
@@ -1136,12 +1136,12 @@ export default function Home() {
                   type="button"
                   onClick={() => {
                     closeResource();
-                    if(selectedResource.linkUrl && selectedResource.linkUrl.startsWith('http')) {
-                        window.location.href = selectedResource.linkUrl;
-                    } else if(selectedResource.linkUrl) {
-                        navigate(selectedResource.linkUrl);
+                    if (selectedResource.linkUrl && selectedResource.linkUrl.startsWith('http')) {
+                      window.location.href = selectedResource.linkUrl;
+                    } else if (selectedResource.linkUrl) {
+                      navigate(selectedResource.linkUrl);
                     } else {
-                        navigate("/contact");
+                      navigate("/contact");
                     }
                   }}
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#8B5CF6] via-[#6366F1] to-[#22D3EE] px-6 py-2 text-sm font-semibold text-white shadow-[0_18px_40px_-24px_rgba(99,102,241,0.65)] transition hover:shadow-[0_26px_60px_-28px_rgba(99,102,241,0.75)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]/60"

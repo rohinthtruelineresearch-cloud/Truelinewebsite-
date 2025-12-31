@@ -43,7 +43,7 @@ const socialLinks = [
   },
   {
     label: "WhatsApp",
-    href: "https://wa.me/919578873583?text=Hi%20Trueline%20team,%20I'd%20like%20to%20learn%20more%20about%20your%20services.",
+    href: "https://wa.me/919578873584?text=Hi%20Trueline%20team,%20I'd%20like%20to%20learn%20more%20about%20your%20services.",
     icon: (
       <svg aria-hidden="true" viewBox="0 0 24 24">
         <path d="M12 2a9.93 9.93 0 0 0-8 3.98A10 10 0 0 0 2 12a9.9 9.9 0 0 0 1.33 5L2 22l5.12-1.32A9.9 9.9 0 0 0 12 22a10 10 0 0 0 10-10 9.94 9.94 0 0 0-3-7.11A9.94 9.94 0 0 0 12 2Zm0 1.8a8.1 8.1 0 0 1 5.66 2.34A8.17 8.17 0 0 1 20.2 12a8.2 8.2 0 0 1-11.63 7.36l-.3-.14-3 .78.8-2.9-.16-.3A8.2 8.2 0 0 1 12 3.8Zm4.36 9.24c-.24-.12-1.41-.7-1.62-.78s-.37-.12-.53.12-.6.78-.73.94-.27.18-.5.06a6.68 6.68 0 0 1-3-2.55c-.23-.39.23-.36.64-1.2a.43.43 0 0 0 0-.41c-.06-.12-.53-1.28-.72-1.76s-.39-.4-.53-.41h-.45a.87.87 0 0 0-.62.3 2.63 2.63 0 0 0-.82 2c0 1.18.84 2.32.94 2.48s1.65 2.6 4 3.54a13.64 13.64 0 0 0 1.34.4 3.24 3.24 0 0 0 1.52.1c.46-.07 1.41-.58 1.61-1.14s.2-1 .14-1.14-.21-.18-.45-.3Z" />
@@ -101,7 +101,7 @@ export default function Footer() {
       console.error("Subscription error:", error);
       setToastMessage("An error occurred. Please try again later.");
     }
-    
+
     setToastVisible(true);
 
     if (toastTimeoutRef.current) {
@@ -163,7 +163,7 @@ export default function Footer() {
               Email: <a href="mailto:truelineresearchteam@gmail.com">truelineresearchteam@gmail.com</a>
             </p>
             <p>
-              Phone: <a href="tel:+919578873583">+91 95788 73583</a>
+              Phone: <a href="tel:+919578873584">+91 95788 73584</a>
             </p>
             <p>Average response time: within one business day.</p>
           </section>
