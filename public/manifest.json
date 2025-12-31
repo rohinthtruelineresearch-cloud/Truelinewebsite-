@@ -1,0 +1,20 @@
+{
+  "short_name": "Trueline",
+  "name": "Trueline Research Platform",
+  "icons": [
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#002C71",
+  "background_color": "#ffffff"
+}

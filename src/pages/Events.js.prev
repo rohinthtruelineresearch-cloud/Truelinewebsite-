@@ -1,0 +1,103 @@
+import ResourceHeroAnimation from "../components/ResourceHeroAnimation";
+import eventGallery from "../event-gallery/gallery";
+
+export default function Events() {
+  const hasEventGallery = eventGallery.length > 0;
+
+  return (
+    <div className="pt-0">
+      <section
+        className="relative overflow-hidden py-20 text-white"
+        style={{ background: "linear-gradient(135deg, #00A99D 4%, #2C3E50 88%)" }}
+      >
+        <ResourceHeroAnimation />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/8 via-transparent to-[#001a2c]/45" />
+        <div className="relative container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Events & Clinics</h1>
+            <p className="text-xl md:text-2xl text-white/80 leading-relaxed">
+              Immersive workshops, faculty development programmes, and innovation clinics tailored to your research roadmap.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20" style={{ backgroundColor: "#021420" }}>
+        <div className="container mx-auto px-6 text-white">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h2 className="text-3xl md:text-4xl font-semibold">Event highlights</h2>
+            <p className="text-lg text-white/80 leading-relaxed">
+              Snapshots from campus roadshows, innovation clinics, and publication bootcamps we have co-created with partner institutions.
+            </p>
+          </div>
+
+          {hasEventGallery ? (
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {eventGallery.map((item, index) => (
+                <figure
+                  key={item.src || index}
+                  className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_16px_40px_-20px_rgba(0,0,0,0.75)]"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading="lazy"
+                    className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent px-5 pb-5 pt-16">
+                    <p className="text-xs uppercase tracking-[0.28em] text-[#89EFF6]">Trueline Research</p>
+                    <h3 className="mt-3 text-lg font-semibold">{item.label}</h3>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12 flex flex-col items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-8 py-12 text-center text-white/75">
+              <p className="text-lg font-medium">
+                Add event photos to <span className="font-mono text-white">src/event-gallery</span> to populate this showcase.
+              </p>
+              <p className="mt-3 max-w-2xl text-sm text-white/60">
+                Include .jpg, .png, .webp, or .svg files and they will appear here automatically.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="py-20" style={{ backgroundColor: "#F7F9FA" }}>
+        <div className="container mx-auto px-6">
+          <div className="space-y-16">
+            <div className="grid gap-10 lg:grid-cols-2 items-center">
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold text-[#2C3E50]">Signature formats</h2>
+                <p className="text-lg text-[#2C3E50]/80 leading-relaxed">
+                  We host curated programmes that blend practice with implementation. Each clinic includes pre-work, live
+                  facilitation, and follow-up artefacts so participants can apply the learning immediately.
+                </p>
+              </div>
+              <div className="bg-white rounded-2xl border border-[#E1EEF3] shadow-lg p-8 space-y-4">
+                <ul className="space-y-3 text-[#2C3E50]/80">
+                  <li><strong>Publication bootcamps:</strong> Manuscript planning, storytelling, and peer-review rehearsal.</li>
+                  <li><strong>IPR readiness labs:</strong> Disclosure drafting, patent search, and commercialisation pathways.</li>
+                  <li><strong>Accreditation playbook sessions:</strong> Mapping evidence packs to NBA, NAAC, NIRF, and QS rubrics.</li>
+                  <li><strong>Innovation demo days:</strong> Prototype showcases with industry mentors and funding dialogues.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-[#E1EEF3] shadow-lg p-8">
+              <h3 className="text-2xl font-semibold text-[#2C3E50] mb-4">Planning an upcoming event?</h3>
+              <p className="text-[#2C3E50]/80 leading-relaxed">
+                We co-design event agendas, manage speaker curation, and build collateral so your participants stay engaged.
+                Tell us your audience and expected outcomes - we will share a draft run-of-show within 48 hours.
+              </p>
+              <a className="inline-flex items-center justify-center px-6 py-3 mt-6 bg-[#00A99D] text-white rounded-lg font-semibold hover:bg-[#2C3E50] transition-colors" href="/contact">
+                Share your brief
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
