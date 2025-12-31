@@ -181,7 +181,7 @@ class Media {
     this.font = font;
     this.createShader();
     this.createMesh();
-    this.createTitle();
+    // this.createTitle();
     this.onResize();
   }
 
