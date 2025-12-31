@@ -160,14 +160,9 @@ export default function About() {
   })();
 
   const galleryItems =
-    showcases.length > 0 
-      ? showcases.map(s => ({ 
-          image: getImageUrl(s.logoUrl), 
-          text: `${s.name}${s.location ? ` (${s.location})` : ''}` 
-        }))
-      : eventGalleryPool.length > 0
-        ? eventGalleryPool
-        : fallbackEventGallery;
+    eventGalleryPool.length > 0
+      ? eventGalleryPool
+      : fallbackEventGallery;
 
   const { scrollYProgress: leadershipSectionProgress } = useScroll({
     target: leadershipRef,
