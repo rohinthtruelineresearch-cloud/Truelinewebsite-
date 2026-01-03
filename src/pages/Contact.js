@@ -7,7 +7,7 @@ const quickLinks = [
   },
   {
     label: "Call the engagement desk",
-    value: "+91 95788 73584",
+    value: "TN :+91 95788 73584" + "\n" + "KL : +91 80564 17009",
     href: "tel:+919578873584",
   },
   {
@@ -36,18 +36,17 @@ const mainHQ = {
 
 const branchLocations = [
   {
-    label: "Salem Branch",
+    label: "Branch Office – Salem, Tamil Nadu",
     address: [
-      "Sona Valliappa Campus",
-      "Kandarkulamanickam (KKM)",
-      "Kakkapalayam to Attayampatti Road",
-      "TK, Sankari, Salem, Tamil Nadu 637504",
+      "Co-Working Space, 2nd Floor, Sona Incubation Foundation,",
+      "Sona College of Technology,",
+      "Salem – 636005, TN, India.",
     ],
     mapsHref:
-      "https://dates.google.com/?q=Sona+Valliappa+Campus+Kandarkulamanickam+Salem",
+      "https://www.google.com/maps/search/?api=1&query=Sona+Incubation+Foundation+Salem",
   },
   {
-    label: "Kerala Branch",
+    label: "Branch Office – Ernakulam, Kerala",
     address: [
       "Building No: 37/882, Opp. Municipal Town Hall",
       "Thirunilath Housing Colony, South Kalamassery",
@@ -176,7 +175,7 @@ export default function Contact() {
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/60">
                     {item.label}
                   </p>
-                  <p className="mt-3 text-base font-medium text-white">
+                  <p className="mt-3 text-base font-medium text-white whitespace-pre-line">
                     {item.value}
                   </p>
                 </a>

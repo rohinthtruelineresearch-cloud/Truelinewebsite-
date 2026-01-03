@@ -345,7 +345,7 @@ export default function Home() {
       context: "Quality",
       title: "Accreditation & Quality Support",
       description:
-        "Tailored frameworks to meet the highest standards of quality, compliance, and evidence readiness for NAAC, NBA, QS, and more.",
+        "Tailored frameworks to meet the highest standards of quality, compliance, and evidence readiness for NAAC, NBA, QS, ISO and more.",
       highlights: [
         "Evidence vaults & reviewer journeys",
         "Leadership dashboards & diagnostics",
@@ -373,12 +373,12 @@ export default function Home() {
     },
     {
       context: "Global Reach",
-      title: "IMPACT & ECOSYSTEM",
+      title: "TRUELINE VENTURE STUDIO",
       description:
-        "Join 500+ startups and enterprises that have accelerated product launches, reduced infrastructure costs by 40%, and scaled AI solutions with our automation-first approach.",
+        "We empower students from institutes and universities to transform their startup ideas into validated, market-ready startups using research intelligence, AI-driven solutions, and hands-on support.",
       highlights: [
-        "3x faster deployment cycles",
-        "60% reduction in operational overhead",
+        "Turn students’ startup ideas from institutes and universities into validated concepts",
+        "Build AI-powered prototypes for rapid market-ready startup launch",
       ],
       accent: "#38BDF8",
       ctaLabel: "View Outcomes",
@@ -390,7 +390,7 @@ export default function Home() {
       context: "Ecosystem",
       title: "Startup & MSME Ecosystem Enabler",
       description:
-        "Go from MVP to market leadership with proven playbooks, investor networks, and growth automation designed for tech ventures.",
+        "Go from MVP to market leadership with proven playbooks, investor networks, and growth automation designed for ventures.",
       highlights: [
         "Product-market fit validation frameworks",
         "Investor matchmaking & pitch optimization",
@@ -437,7 +437,7 @@ export default function Home() {
   const [featuredEvents, setFeaturedEvents] = useState(staticEvents);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}/api/events`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL || 'https://truelinewebsite-server.onrender.com'}/api/events`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
@@ -818,7 +818,7 @@ export default function Home() {
                 <Award className="w-12 h-12 text-orange-400" />
               </div>
               <h3 className="text-4xl font-bold text-black mb-2">
-                <CountUp from={0} to={10} duration={1.5} className="inline-block" />
+                <CountUp from={0} to={150} duration={1.5} className="inline-block" />
                 +
               </h3>
               <p className="text-black text-lg font-semibold">Unified Support for Academia & Industry</p><h5 className="text-black text-lg ">AI, research enablement, IPR support, and ranking readiness.</h5>
@@ -828,7 +828,7 @@ export default function Home() {
                 <Users className="w-12 h-12 text-green-400" />
               </div>
               <h3 className="text-4xl font-bold text-black mb-2">
-                <CountUp from={0} to={100} duration={1.5} className="inline-block" />
+                <CountUp from={0} to={50} duration={1.5} className="inline-block" />
                 +
               </h3>
               <p className="text-black text-lg font-semibold">End-to-End AI Enablement</p><h5 className="text-black text-lg ">From strategy and build to deployment and scale.</h5>
@@ -838,7 +838,7 @@ export default function Home() {
                 <TrendingUp className="w-12 h-12 text-blue-400" />
               </div>
               <h3 className="text-4xl font-bold text-black mb-2">
-                <CountUp from={0} to={100} duration={1.5} className="inline-block" />
+                <CountUp from={0} to={50} duration={1.5} className="inline-block" />
                 +
               </h3>
               <p className="text-black text-lg font-semibold">Outcome-Driven Delivery

@@ -163,7 +163,9 @@ export default function Footer() {
               Email: <a href="mailto:truelineresearchteam@gmail.com">truelineresearchteam@gmail.com</a>
             </p>
             <p>
-              Phone: <a href="tel:+919578873584">+91 95788 73584</a>
+              Phone: <a href="tel:+919578873584">TN : +91 95788 73584</a>
+              <br />
+              Phone: <a href="tel:+919578873584">KL : +91 80564 17009</a>
             </p>
             <p>Average response time: within one business day.</p>
           </section>
