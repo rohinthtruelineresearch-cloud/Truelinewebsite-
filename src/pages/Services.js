@@ -1,227 +1,33 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
-  MousePointer2,
-  Cpu as CpuIcon,
-  LineChart as LineChartIcon,
-  ShieldCheck as ShieldCheckIcon,
   Atom as AtomIcon,
-  ArrowRight,
-  Shield,
-  Lock,
-  Activity,
+  ShieldCheck as ShieldCheckIcon,
+  BookOpen,
+  Code,
 } from "lucide-react";
 import PathMorphing from "../components/PathMorphing";
 import ResourceHeroAnimation from "../components/ResourceHeroAnimation";
-import CardSwap, { Card } from "./CardSwap";
 import {
   ManuscriptsIcon,
   IPRIcon,
   AccreditationIcon,
   StrategyIcon,
-  AnalyticsIcon,
   Targeticon,
 } from "../components/ServiceIcons";
-import imgAiStrategy from "../images/AI Research & Innovation Labs.png";
-import imgResearchLab from "../images/research_innovation_lab.jpg";
-import imgNextGenPlatform from "../images/next_gen_ai_platform.jpg";
-import imgAiConsulting from "../images/ai_consulting_advisory.jpg";
+import imgAiStrategy from "../images/excellence_strategy.jpg";
+import imgResearchLab from "../images/innovation_lab.jpg";
+import imgNextGenPlatform from "../images/platform_nextgen.jpg";
+import imgAccreditation from "../images/evidence_compliance.jpg";
+import imgVentureStudio from "../images/acceleration_venture.jpg";
+import imgIPR from "../images/IPR Commercialisation Suite.jpeg";
+import imgWebDev from "../images/web_development.png";
 
-const defaultMenuButtonConfig = {
-  iconSize: 20,
-  buttonSize: 40,
-  buttonPadding: 8,
-};
 
-const POINTER_BASE_DEG = 45;
 
-const POINTER_ROT_SPRING = {
-  type: "spring",
-  stiffness: 220,
-  damping: 26,
-};
-
-const BUTTON_MOTION_CONFIG = {
-  initial: "rest",
-  variants: {
-    rest: { maxWidth: "40px" },
-    hover: {
-      maxWidth: "140px",
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 35,
-        delay: 0.05,
-      },
-    },
-    tap: { scale: 0.95 },
-  },
-  transition: { type: "spring", stiffness: 200, damping: 25 },
-};
-
-const LABEL_VARIANTS = {
-  rest: { opacity: 0, x: 4 },
-  hover: {
-    opacity: 1,
-    x: 0,
-    visibility: "visible",
-    width: "auto",
-  },
-  tap: { opacity: 1, x: 0, visibility: "visible", width: "auto" },
-};
-
-const LABEL_TRANSITION = {
-  type: "spring",
-  stiffness: 200,
-  damping: 25,
-};
-
-function getPolarCoordinates(angleDeg, radius) {
-  const rad = ((angleDeg - 90) * Math.PI) / 180;
-  return { x: radius * Math.cos(rad), y: radius * Math.sin(rad) };
-}
-
-function calculateIconOffset({ buttonSize, iconSize, buttonPadding, bias = 0 }) {
-  const centerOffset = (buttonSize - iconSize) / 2;
-  return centerOffset - buttonPadding + bias;
-}
-
-function withDefaults(defaults, overrides) {
-  return { ...defaults, ...(overrides ?? {}) };
-}
-
-function normalizeDeg(angle) {
-  return ((angle % 360) + 360) % 360;
-}
-
-function toNearestTurn(previous, target) {
-  const normalized = normalizeDeg(target);
-  if (previous === undefined || previous === null) return normalized;
-  const turns = Math.round((previous - normalized) / 360);
-  return normalized + 360 * turns;
-}
-
-function useShortestRotation(target) {
-  const previousRef = useRef(undefined);
-  return useMemo(() => {
-    const next = toNearestTurn(previousRef.current, target);
-    previousRef.current = next;
-    return next;
-  }, [target]);
-}
-
-function MenuButton({ item, isActive, onActivate, menuButtonConfig }) {
-  const { icon: Icon, label } = item;
-  const { iconSize, buttonSize, buttonPadding } = menuButtonConfig;
-
-  const translateX = calculateIconOffset({
-    ...menuButtonConfig,
-    bias: -1,
-  });
-
-  return (
-    <motion.button
-      {...BUTTON_MOTION_CONFIG}
-      initial={false}
-      animate={isActive ? "hover" : "rest"}
-      className="relative flex items-center space-x-1 overflow-hidden whitespace-nowrap rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm"
-      style={{
-        height: buttonSize,
-        minWidth: buttonSize,
-        padding: buttonPadding,
-      }}
-      onClick={onActivate}
-      type="button"
-      role="menuitem"
-      aria-pressed={Boolean(isActive)}
-      aria-label={label}
-    >
-      <Icon
-        className="shrink-0 text-[#00A99D]"
-        style={{
-          height: iconSize,
-          width: iconSize,
-          transform: `translateX(${translateX}px)`,
-        }}
-      />
-      <motion.span
-        variants={LABEL_VARIANTS}
-        transition={LABEL_TRANSITION}
-        className="invisible w-0 text-sm font-medium text-slate-700"
-      >
-        {label}
-      </motion.span>
-    </motion.button>
-  );
-}
-
-function RadialNav({ size = 180, items, menuButtonConfig, defaultActiveId, onActiveChange }) {
-  const orbitRadius = size / 2 - 0.5;
-  const [activeId, setActiveId] = useState(defaultActiveId ?? null);
-
-  useEffect(() => {
-    if (defaultActiveId !== undefined && defaultActiveId !== null) {
-      setActiveId(defaultActiveId);
-    }
-  }, [defaultActiveId]);
-
-  const handleActivate = (id) => {
-    setActiveId(id);
-    onActiveChange?.(id);
-  };
-
-  const baseAngle = (items.find((it) => it.id === activeId)?.angle ?? 0) + POINTER_BASE_DEG;
-  const rotateAngle = useShortestRotation(baseAngle);
-
-  const resolvedMenuButtonConfig = withDefaults(defaultMenuButtonConfig, menuButtonConfig);
-
-  return (
-    <div
-      className="relative flex items-center justify-center rounded-full border border-[#00A99D]/20 bg-white/70 shadow-[0_28px_80px_-56px_rgba(1,50,67,0.45)]"
-      style={{ width: size, height: size }}
-      role="menu"
-      aria-label="Radial navigation"
-    >
-      <motion.div
-        initial={false}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#00A99D]"
-        animate={{ rotate: rotateAngle }}
-        transition={POINTER_ROT_SPRING}
-        style={{ originX: 0.5, originY: 0.5 }}
-        aria-hidden="true"
-      >
-        <MousePointer2 className="h-5 w-5" />
-      </motion.div>
-      {items.map((item) => {
-        const { id, angle } = item;
-        const { x, y } = getPolarCoordinates(angle, orbitRadius);
-        return (
-          <div
-            key={id}
-            className="group absolute"
-            style={{
-              left: `calc(50% + ${x}px)`,
-              top: `calc(50% + ${y}px)`,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <MenuButton
-              item={item}
-              isActive={activeId === id}
-              onActivate={() => handleActivate(id)}
-              menuButtonConfig={resolvedMenuButtonConfig}
-            />
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 function TextParallaxContent({ imgUrl, subheading, heading, children, reverse }) {
   return (
-    <section className="px-6 py-16 sm:py-24">
+    <section className="px-6 py-8 sm:py-12">
       <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
         <div className={`relative mx-auto w-full h-[400px] lg:h-[500px] overflow-hidden rounded-[32px] bg-slate-900/5 shadow-[0_28px_70px_-38px_rgba(15,23,42,0.45)] ${reverse ? 'lg:order-last' : ''}`}>
           <img
@@ -284,19 +90,20 @@ export default function ServicesPage() {
         "ROI-focused implementation roadmap and milestones",
         "Change management and team upskilling support",
       ],
-      icon: ManuscriptsIcon,
+      icon: StrategyIcon,
     },
     {
-      title: "NEXT-GEN AI PLATFORM",
-      badge: "Where Cutting-Edge Meets User-Friendly",
-      description: "Modern AI products that are easy to use, secure to operate, and ready to scale—from pilots to production.",
+      title: "JOURNALS & PUBLISHING SUPPORT",
+      badge: "From Draft to Submission-Ready Manuscripts",
+      description: "Accelerate your publication journey with expert audits, language polishing, and strategic journal selection. Our editorial pods ensure your research meets global indexing standards.",
       features: [
-        "Smart chatbot solutions (LLM assistants & support bots)",
-        "Industrial automation workflows ",
-        "Enterprise software & integrations",
-        "Digital transformation tools (dashboards, workflows, portals)",
+        "Strategic Journal Targeting: Shortlist based on scope & impact",
+        "Manuscript Audit: Identification of gaps in structure & novelty",
+        "Language & Formatting Polish: Reference management & templates",
+        "Submission Readiness Support: Checklist-driven file prep",
+        "Reviewer Response Support: Revision mapping & rebuttal drafting",
       ],
-      icon: AccreditationIcon,
+      icon: BookOpen,
     },
     {
       title: "RESEARCH & INNOVATION LAB",
@@ -308,7 +115,7 @@ export default function ServicesPage() {
         "Proof-of-concept development & testing",
         "Research paper publication support",
       ],
-      icon: StrategyIcon,
+      icon: ManuscriptsIcon,
     },
     {
       title: "IPR CONSULTING",
@@ -330,19 +137,34 @@ export default function ServicesPage() {
         "Best practices implementation",
         "Data management and documentation systems",
       ],
-      icon: AnalyticsIcon,
+      icon: AccreditationIcon,
     },
     {
-      title: "Targeted Growth Campaigns",
-      description:
-        "Growth sprints, partnership outreach, and KPI instrumentation to turn strategy into consistent wins.",
+      title: "TRUELINE VENTURE STUDIO",
+      badge: "Building Ideas into Market-Ready Ventures",
+      description: "We empower students, innovators, and early-stage founders to convert ideas into scalable, investment-ready ventures. Through structured incubation, AI-driven prototyping, and expert mentorship, we reduce risk and accelerate go-to-market execution.",
       features: [
-        "Pipeline targets and accountability per department",
-        "Outreach heatmaps for partners, reviewers, and funders",
-        "Campaign experimentation boards with playbacks",
-        "KPI tracking with escalation loops and nudges",
+        "Idea Validation & Problem–Solution Fit: Structured frameworks to assess feasibility",
+        "AI-Powered Prototyping & MVP Development: Rapid development using modern tools",
+        "Mentorship & Founder Enablement: Guidance from industry experts & entrepreneurs",
+        "Incubation & Acceleration Support: Access to funding readiness and pathways",
+        "Business Model & GTM Strategy: Revenue modeling & customer discovery",
+        "Ecosystem & Industry Connect: Linkages with investors and innovation networks"
       ],
       icon: Targeticon,
+    },
+    {
+      title: "MODERN WEB & APP DEVELOPMENT",
+      badge: "SCALABLE, SECURE, HIGH-PERFORMANCE",
+      description: "We build digital products that deliver. From enterprise web applications to consumer mobile apps, we focus on clean architecture, responsive design, and performance-first code.",
+      features: [
+        "Full-Stack Web Development (React, Next.js, Node.js)",
+        "Mobile App Development (Native & Cross-Platform)",
+        "API Design, Microservices & Backend Systems",
+        "Performance Optimization & Cloud Deployment (AWS/Azure)",
+        "UI/UX Implementation & Modern Design Standards",
+      ],
+      icon: Code,
     },
   ];
 
@@ -380,12 +202,6 @@ export default function ServicesPage() {
     },
   ];
 
-  const aiPartners = [
-    { name: "Vertex AI", tagline: "Managed pipelines, evals, and model garden with GCP IAM." },
-    { name: "OpenAI", tagline: "GPT-4, GPT-4o mini, compliant APIs, and enterprise controls." },
-    { name: "Azure AI Studio", tagline: "Landing zones, content filters, and OSS models on Azure OpenAI." },
-    { name: "AWS Bedrock", tagline: "Anthropic, Cohere, and Titan models with Guardrails and CloudWatch." },
-  ];
 
   const timelineSteps = [
     {
@@ -413,41 +229,21 @@ export default function ServicesPage() {
     },
   ];
 
-  const deliveryMetrics = [
-    {
-      label: "Release Velocity",
-      highlight: "46% shorter lead time to production",
-      description:
-        "Trunk-based development with automated testing, CI/CD, and compliance guardrails shortens cycle time from commit to production—shipping value weeks faster without sacrificing quality.",
-      footer: "Serving 18 product teams",
-    },
-    {
-      label: "Service Pipeline",
-      highlight: "63 services/features shipped",
-      description:
-        "Backlog to rollout flow for microservices and features: spec → contract tests → API/DB migrations → canary/blue-green deploys, with observability baked in at every stage.",
-      footer: "Spanning 7 product lines",
-    },
-    {
-      label: "Reliability & Ops",
-      highlight: "12 major SLO upgrades",
-      description:
-        "SLO-driven operations with proactive monitoring, error budgets, and on-call playbooks reduce MTTR and keep availability high—governed by infrastructure-as-code and automated remediation.",
-      footer: "Cross-functional squads in 5 states",
-    },
-  ];
-  const pulseCards = deliveryMetrics.map((metric, index) => ({
-    id: `${metric.label}-${index}`,
-    ...metric,
-  }));
+  // deliveryMetrics and pulseCards were unused in the current layout
+  const pulseCards = [];
+  console.log("Rendering services with pulseCards:", pulseCards);
 
   const parallaxImages = [
-    imgAiConsulting,
-    imgNextGenPlatform,
+    imgAiStrategy,
+    imgNextGenPlatform, // Reusing this for Journals/Publishing context
     imgResearchLab,
+    imgIPR,
+    imgAccreditation,
+    imgVentureStudio,
+    imgWebDev,
   ];
-  const accentPalette = ["#00A99D", "#F39C12", "#6366F1"];
-  const parallaxSections = services.slice(0, 3).map((service, index) => ({
+  const accentPalette = ["#00A99D", "#F39C12", "#6366F1", "#0EA5E9", "#34D399", "#EC4899", "#8B5CF6"];
+  const parallaxSections = services.slice(0, 7).map((service, index) => ({
     ...service,
     imgUrl: parallaxImages[index % parallaxImages.length],
     accent: accentPalette[index % accentPalette.length],
@@ -493,7 +289,7 @@ export default function ServicesPage() {
   const researchMetrics = [
     {
       label: "Institutions & Universities Enabled",
-      value: "150+",
+      value: "100+",
       detail: "Empowering academic partners across India and beyond.",
     },
     {
@@ -535,7 +331,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Overview Section */}
-      <section className="container mx-auto px-6 py-24">
+      <section className="container mx-auto px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl grid gap-16 lg:grid-cols-2 items-center">
           <div className="space-y-8">
             <div className="inline-flex items-center gap-3 rounded-full bg-[#00A99D]/10 px-4 py-2 uppercase tracking-[0.28em] text-[11px] text-[#00A99D]">
@@ -581,8 +377,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Parallax Sections */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className="space-y-24">
+      <section className="bg-white py-8 sm:py-12">
+        <div className="space-y-12 sm:space-y-16">
           {parallaxSections.map((section, index) => (
             <TextParallaxContent
               key={section.title}
@@ -603,7 +399,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Research & Accreditation Section */}
-      <section id="research-labs" className="relative overflow-hidden bg-[#010b19] py-24 text-white">
+      <section id="research-labs" className="relative overflow-hidden bg-[#010b19] py-16 sm:py-20 text-white">
         <div className="pointer-events-none absolute inset-0 opacity-60">
           <div className="absolute -top-20 left-10 h-72 w-72 rounded-full bg-[#22D3EE]/25 blur-[140px]" />
           <div className="absolute bottom-[-6rem] right-[-4rem] h-[22rem] w-[22rem] rounded-full bg-[#A855F7]/20 blur-[180px]" />
@@ -684,7 +480,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Differentiators Section */}
-      <section className="container mx-auto px-6 py-24">
+      <section className="container mx-auto px-6 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="space-y-4 text-center max-w-3xl mx-auto">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#00A99D]">Why Choose Us</p>
@@ -718,7 +514,7 @@ export default function ServicesPage() {
 
 
       {/* Timeline Section */}
-      <section className="container mx-auto px-6 py-24">
+      <section className="container mx-auto px-6 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto bg-white rounded-4xl border border-slate-100 shadow-2xl shadow-slate-200/50 px-6 sm:px-10 lg:px-16 py-20">
           <h2 className="text-4xl sm:text-5xl font-bold mb-16 sm:mb-20 text-center text-[#1B283A]">
             How We <span className="bg-gradient-to-r from-[#00A99D] to-[#F39C12] bg-clip-text text-transparent">Transform</span>
@@ -747,7 +543,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="container mx-auto px-6 py-24">
+      <section className="container mx-auto px-6 py-16 sm:py-20">
         <div className="max-w-5xl mx-auto">
           <div className="relative rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden border border-[#00A99D]/25 bg-gradient-to-r from-[#E2F5F1] via-white to-[#FFF5E6]">
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#00A99D]/15 via-transparent to-[#F39C12]/15" />

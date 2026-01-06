@@ -1,6 +1,5 @@
 ﻿import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../lib/api";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RotatingText from "../components/reactbits/RotatingText";
@@ -23,19 +22,16 @@ import {
   CircuitBoard
 } from "lucide-react";
 import kavitha from "../images/kavitha.jpg";
-import Arun from "../images/Arun.jpg";
-import CircularText from "../components/CircularText";
 import HeroStarfield from "../components/HeroStarfield";
-import GradientText from "../components/GradientText";
 import CountUp from "./CountUp";
 import eventHighlight from "../images/events/AI Strategy & Implementation.png";
-import imgAiStrategy from "../images/ai_strategy_implementation.jpg";
-import imgNextGenPlatform from "../images/next_gen_platform.png";
+import imgAiStrategy from "../images/excellence_strategy.jpg";
+import imgNextGenPlatform from "../images/platform_nextgen.jpg";
 import imgSecurityFabric from "../images/security_fabric.png";
-import imgAccreditationSupport from "../images/accreditation_quality.png";
-import imgResearchInnovation from "../images/research_innovation.jpg";
-import imgImpactEcosystem from "../images/impact_ecosystem.png";
-import imgStartupEcosystem from "../images/Startup & MSME Ecosystem Enabler.png";
+import imgAccreditationSupport from "../images/evidence_compliance.jpg";
+import imgResearchInnovation from "../images/innovation_lab.jpg";
+import imgImpactEcosystem from "../images/acceleration_venture.jpg";
+import imgStartupEcosystem from "../images/acceleration_venture.jpg";
 
 const FALLBACK_EVENT_GALLERY = [
   {
@@ -133,7 +129,7 @@ export default function Home() {
       img: kavitha,
     },
     {
-      name: "Dr. Sarah Jenkins",
+      name: "Dr. Anjali Desai",
       role: "CTO",
       quote:
         "The AI strategy roadmap helped us secure our Series A. The technical due diligence was a breeze thanks to the documentation standards.",
@@ -145,7 +141,7 @@ export default function Home() {
         "We reduced our patent filing time by 40% using their prior-art search workflows. Essential for our R&D output.",
     },
     {
-      name: "Michael Chen",
+      name: "Arjun Mehta",
       role: "Director of Engineering",
       quote:
         "From raw data to a deployed RAG agent in 4 weeks. The MLOps architecture is robust and scales effortlessly.",
@@ -157,7 +153,7 @@ export default function Home() {
         "The manuscript support pods are incredible. My team published three Q1 journal papers in a single semester with their guidance.",
     },
     {
-      name: "James Thompson",
+      name: "Ramesh Krishnan",
       role: "VP of Engineering",
       quote:
         "Implementing the governance framework was daunting until we used their gap analysis blueprints. We are now audit-ready.",
@@ -169,7 +165,7 @@ export default function Home() {
         "The accreditation evidence stack saved us hundreds of hours during our NAAC visit. Every artifact was traceable and organized.",
     },
     {
-      name: "Prof. Alan Davies",
+      name: "Prof. Amit Patel",
       role: "Director, Centre of Excellence",
       quote:
         "Finally, a partner that understands both deep tech and academic nuance. The IP commercialization support was world-class.",
@@ -181,7 +177,7 @@ export default function Home() {
         "Their MSME scaling playbook gave us the operational clarity we needed to expand into two new markets this year.",
     },
     {
-      name: "Dr. Elena S.",
+      name: "Dr. Sunita Rao",
       role: "Head of Research Ops",
       quote:
         "Weekly governance pods kept our publication, IP, and analytics workstreams synchronized. We typically lack this visibility.",
@@ -199,7 +195,7 @@ export default function Home() {
         "Faculty appreciated how every workshop delivered tangible artefacts—code, models, and papers—not just theoretical slides.",
     },
     {
-      name: "Robert Wilson",
+      name: "Ravi Shankar",
       role: "CEO",
       quote:
         "Trueline's ethical AI framework helped us navigate complex deployment challenges in the public sector with confidence.",
@@ -297,10 +293,10 @@ export default function Home() {
 
   const excellenceFeatures = [
     {
-      context: "Strategy",
-      title: "AI Strategy & Implementation",
+      context: "STRATEGY",
+      title: "AI Consulting & Advisory Services",
       description:
-        "Chart your AI journey with precision. We identify breakthrough opportunities, architect scalable solutions, and accelerate time-to-value with battle-tested frameworks.",
+        "Customized AI strategies aligned with institutional and enterprise goals to drive digital transformation, operational efficiency, and sustainable growth.",
       highlights: [
         "Executive-ready AI adoption roadmaps",
         "Tech stack optimization & architecture design",
@@ -312,70 +308,10 @@ export default function Home() {
       cardAccent: "#0E2D47",
     },
     {
-      context: "Platform",
-      title: "Next-Gen AI Platform",
+      context: "VENTURE",
+      title: "Trueline Venture Studio",
       description:
-        "Deploy production-grade AI on infrastructure built for speed and scale. Automate workflows, orchestrate models, and gain real-time insights from day one.",
-      highlights: [
-        "MLOps pipeline & model registry",
-        "Enterprise-grade orchestration & monitoring",
-      ],
-      accent: "#8B5CF6",
-      ctaLabel: "Explore the Platform",
-      href: "/services",
-      image: imgNextGenPlatform,
-      cardAccent: "#14264B",
-    },
-    {
-      context: "Security",
-      title: "Firewall & Security Fabric",
-      description:
-        "Adaptive firewalls, zero-trust segmentation, and SOC automations wired into every deployment so your researchers stay online and compliant.",
-      highlights: [
-        "Managed WAF + API shielding with live telemetry",
-        "24x7 SOC automation and compliance evidence packs",
-      ],
-      accent: "#0EA5E9",
-      ctaLabel: "Review Safeguards",
-      href: "/services#security",
-      image: imgSecurityFabric,
-      cardAccent: "#031225",
-    },
-    {
-      context: "Quality",
-      title: "Accreditation & Quality Support",
-      description:
-        "Tailored frameworks to meet the highest standards of quality, compliance, and evidence readiness for NAAC, NBA, QS, ISO and more.",
-      highlights: [
-        "Evidence vaults & reviewer journeys",
-        "Leadership dashboards & diagnostics",
-      ],
-      accent: "#34D399",
-      ctaLabel: "Learn About Our Standards",
-      href: "/services",
-      image: imgAccreditationSupport,
-      cardAccent: "#10353A",
-    },
-    {
-      context: "R&D",
-      title: "AI Research & Innovation Labs",
-      description:
-        "Test cutting-edge algorithms, validate proof-of-concepts, and prototype next-gen solutions in secure, production-mirrored environments.",
-      highlights: [
-        "Generative AI & LLM experimentation",
-        "Computer vision & NLP sandboxes",
-      ],
-      accent: "#F59E0B",
-      ctaLabel: "See Our Research Model",
-      href: "/services",
-      image: imgResearchInnovation,
-      cardAccent: "#2C1F08",
-    },
-    {
-      context: "Global Reach",
-      title: "TRUELINE VENTURE STUDIO",
-      description:
-        "We empower students from institutes and universities to transform their startup ideas into validated, market-ready startups using research intelligence, AI-driven solutions, and hands-on support.",
+        "We enable students, innovators, and early-stage founders to transform ideas into validated, market-ready ventures through AI-powered prototyping, mentorship, incubation, and ecosystem support.",
       highlights: [
         "Turn students’ startup ideas from institutes and universities into validated concepts",
         "Build AI-powered prototypes for rapid market-ready startup launch",
@@ -387,10 +323,70 @@ export default function Home() {
       cardAccent: "#0B2745",
     },
     {
-      context: "Ecosystem",
+      context: "PLATFORM",
+      title: "QuantumLeap AI Suite",
+      description:
+        "Enterprise-grade software platforms for real-time data streaming, autonomous AI agents, and intelligent applications across research and industry.",
+      highlights: [
+        "MLOps pipeline & model registry",
+        "Enterprise-grade orchestration & monitoring",
+      ],
+      accent: "#8B5CF6",
+      ctaLabel: "Explore the Suite",
+      href: "/products",
+      image: imgNextGenPlatform,
+      cardAccent: "#14264B",
+    },
+    {
+      context: "COMPLIANCE",
+      title: "Accreditation & Ranking Support",
+      description:
+        "End-to-end support to meet accreditation standards and enhance institutional rankings through structured compliance and evidence-driven outcomes across NAAC, NBA, NIRF, ARIIA, QS, and ISO.",
+      highlights: [
+        "Evidence vaults & reviewer journeys",
+        "Leadership dashboards & diagnostics",
+      ],
+      accent: "#34D399",
+      ctaLabel: "Learn About Our Standards",
+      href: "/services",
+      image: imgAccreditationSupport,
+      cardAccent: "#10353A",
+    },
+    {
+      context: "PROTECTION",
+      title: "IPR Consulting",
+      description:
+        "Strategic intellectual property advisory to protect innovation, strengthen valuation, and ensure regulatory compliance across the full IP lifecycle.",
+      highlights: [
+        "Patent filing & prior art search",
+        "IP valuation & commercialization advisory",
+      ],
+      accent: "#0EA5E9",
+      ctaLabel: "Secure Your Innovation",
+      href: "/ipr-patents",
+      image: imgSecurityFabric,
+      cardAccent: "#031225",
+    },
+    {
+      context: "INNOVATION",
+      title: "AI Research & Innovation Labs",
+      description:
+        "End-to-end AI research infrastructure enabling advanced experimentation, applied research, and accelerated innovation for academia and industry.",
+      highlights: [
+        "Generative AI & LLM experimentation",
+        "Computer vision & NLP sandboxes",
+      ],
+      accent: "#F59E0B",
+      ctaLabel: "See Our Research Model",
+      href: "/services",
+      image: imgResearchInnovation,
+      cardAccent: "#2C1F08",
+    },
+    {
+      context: "GROWTH",
       title: "Startup & MSME Ecosystem Enabler",
       description:
-        "Go from MVP to market leadership with proven playbooks, investor networks, and growth automation designed for ventures.",
+        "AI-driven incubation and ecosystem support to accelerate ideation, validation, and scalable market entry for startups and MSMEs.",
       highlights: [
         "Product-market fit validation frameworks",
         "Investor matchmaking & pitch optimization",
@@ -406,31 +402,31 @@ export default function Home() {
   // Static fallback data
   const staticEvents = [
     {
-      _id: "ai-research-clinic",
-      tag: "TECH WORKSHOP",
-      title: "AI Architecture Masterclass",
+      _id: "vibathon-2025",
+      tag: "HACKATHON",
+      title: "VIBATHON 2025 - K.S.R College of Engineering (Autonomous)",
       description:
-        "Deep-dive into scalable AI system design—from data pipelines to model serving, with live architecture reviews and optimization strategies.",
-      date: "Sep 24, 2024 · Virtual",
+        "A large-scale AI-based hackathon where innovation met real-world implementation. Students built socially impactful AI & IoT solutions through live prototyping and industry evaluation.",
+      date: "September 26, 2025 · Emerald Hall, Tamil Nadu",
       accent: "#8B5CF6",
     },
     {
-      _id: "accreditation-summit",
-      tag: "HACKATHON",
-      title: "MLOps Sprint Challenge",
+      _id: "d2c-connect-2024",
+      tag: "SUMMIT & EXPO",
+      title: "D2C.CONNECT 2024",
       description:
-        "24-hour intensive on building production MLOps pipelines—automated training, monitoring, and deployment with industry mentors.",
-      date: "Oct 12, 2024 · Bengaluru",
-      accent: "#22D3EE",
+        "South India’s largest D2C ecosystem gathering bringing together founders, marketers, innovators, and investors to shape the future of direct-to-consumer brands.",
+      date: "30 Nov 2024 · Le Meridien, Coimbatore",
+      accent: "#F472B6",
     },
     {
-      _id: "startup-forge",
-      tag: "FOUNDER SESSION",
-      title: "Startup Tech Stack Clinic",
+      _id: "genai-connect",
+      tag: "GENAI EVENT",
+      title: "GenAI.Connect Summit & Expo",
       description:
-        "Hands-on workshop optimizing cloud costs, scaling infrastructure, and implementing DevOps best practices for early-stage ventures.",
-      date: "Nov 3, 2024 · Hybrid",
-      accent: "#34D399",
+        "Where AI startups, entrepreneurs, and industry leaders came together for inspiring pitches, product launches, and meaningful collaborations.",
+      date: "April 27, 2024 · Salem",
+      accent: "#22D3EE",
     },
   ];
 

@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Target, Eye, Award, Users, Lightbulb, Heart, Rocket, GraduationCap, Landmark, ShieldCheck, Workflow, Linkedin } from "lucide-react";
-import Arun from "../images/Arun.jpg";
 import NagarajImage from "../images/nagaraj-new.jpg";
 import CircularGallery from "./CircularGallery";
 import ResourceHeroAnimation from "../components/ResourceHeroAnimation";
@@ -159,15 +158,23 @@ export default function About() {
     }
   })();
 
-  const galleryItems =
-    eventGalleryPool.length > 0
-      ? eventGalleryPool
-      : fallbackEventGallery;
+  const galleryItems = useMemo(() => {
+    if (showcases.length > 0) {
+      return showcases.map(s => ({
+        image: getImageUrl(s.logoUrl),
+        text: s.name
+      }));
+    }
+    return eventGalleryPool.length > 0 ? eventGalleryPool : fallbackEventGallery;
+  }, [showcases, eventGalleryPool, fallbackEventGallery]);
 
+  /*
   const { scrollYProgress: leadershipSectionProgress } = useScroll({
     target: leadershipRef,
     offset: ["start end", "end start"],
   });
+  */
+  /* 
   const leadershipProgressSpring = useSpring(leadershipSectionProgress, {
     stiffness: 90,
     damping: 25,
@@ -178,6 +185,9 @@ export default function About() {
     [0, 0.1, 0.9, 1],
     [0, 1, 1, 0]
   );
+  */
+
+  // Note: leadershipProgressSpring and leadershipProgressOpacity are available for future scroll animations if needed
 
 
   useEffect(() => {
@@ -270,6 +280,7 @@ export default function About() {
     },
   ];
 
+  /*
   const teamSpotlight = [
     {
       name: "Dr. Nagaraj V.",
@@ -293,6 +304,7 @@ export default function About() {
       image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=640&q=80"
     }
   ];
+  */
 
   const getInitials = (name) =>
     name
@@ -530,9 +542,9 @@ export default function About() {
           <div className="max-w-5xl mx-auto">
             <div className="prose prose-lg max-w-none mb-16 text-[#2C3E50]">
               <p className="text-xl leading-relaxed">
-                Trueline Research Private Limited delivers AI solutions for real business impact. We partner with startups and corporates to build and deploy LLM assistants, CRM automation, analytics, and AI-enabled web platforms that sharpen decisions and accelerate execution.
+                Trueline Research Private Limited delivers AI solutions for real business impact. We partner with startups and corporates to build and deploy LLM assistants, CRM automation, analytics, and AI-enabled web platforms that sharpen decisions and accelerate execution.We also support higher-education and research ecosystems through innovation enablement, structured guidance, and milestone-based delivery—helping teams move from ideas to measurable outcomes.
               </p>
-              <p className="text-xl leading-relaxed">We also support higher-education and research ecosystems through innovation enablement, structured guidance, and milestone-based delivery—helping teams move from ideas to measurable outcomes.</p>
+              
 
             </div>
 

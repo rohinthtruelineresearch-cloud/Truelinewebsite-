@@ -56,7 +56,10 @@ export default function AdminDashboard() {
   const [highlights, setHighlights] = useState([]);
   const [highlightFormData, setHighlightFormData] = useState({
       title: "",
-      images: ""
+      images: "",
+      year: new Date().getFullYear(),
+      category: "Event",
+      eventDate: ""
   });
   const [editingHighlightId, setEditingHighlightId] = useState(null);
 
@@ -366,7 +369,10 @@ export default function AdminDashboard() {
   const resetHighlightForm = () => {
       setHighlightFormData({
           title: "",
-          images: ""
+          images: "",
+          year: new Date().getFullYear(),
+          category: "Event",
+          eventDate: ""
       });
       setEditingHighlightId(null);
   }
@@ -420,7 +426,10 @@ export default function AdminDashboard() {
   const handleStartEditHighlight = (hi) => {
       setHighlightFormData({
           ...hi,
-          images: hi.images ? hi.images.join("\n") : ""
+          images: hi.images ? hi.images.join("\n") : "",
+          year: hi.year || new Date().getFullYear(),
+          category: hi.category || "Event",
+          eventDate: hi.eventDate ? hi.eventDate.split('T')[0] : ""
       });
       setEditingHighlightId(hi._id);
       setActiveTab("highlights");
@@ -695,7 +704,10 @@ export default function AdminDashboard() {
       const payload = {
           title: highlightFormData.title,
           // Split by newline or comma and filter empty strings
-          images: highlightFormData.images.split(/[\n,]+/).map(s => s.trim()).filter(Boolean)
+          images: highlightFormData.images.split(/[\n,]+/).map(s => s.trim()).filter(Boolean),
+          year: highlightFormData.year,
+          category: highlightFormData.category,
+          eventDate: highlightFormData.eventDate
       };
 
       try {
@@ -1025,6 +1037,7 @@ export default function AdminDashboard() {
                      <div className="space-y-8">
                          <div className="bg-white rounded-2xl shadow-xl p-8">
                              <h2 className="text-xl font-bold text-[#2C3E50] mb-6">{editingShowcaseId ? 'Edit Showcase Entry' : 'Add Institutional Showcase'}</h2>
+                             {/* Institutional Showcase */}
                              <form onSubmit={handleShowcaseSubmit} className="space-y-4">
                                  <div>
                                      <label className="block text-sm font-semibold text-gray-700">Institution Name</label>
@@ -1048,18 +1061,18 @@ export default function AdminDashboard() {
                                  </div>
                                  <div>
                                      <label className="block text-sm font-semibold text-gray-700">Logo Image URL</label>
-                                     <div className="flex gap-2 mt-1">
-                                         <input type="text" name="logoUrl" value={showcaseFormData.logoUrl} onChange={handleShowcaseChange} required className="w-full rounded-xl border p-2 border-gray-300" placeholder="https://..." />
-                                         <label className="cursor-pointer bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 px-3 py-2 rounded-xl text-sm font-medium flex items-center">
-                                             <span>Upload</span>
-                                             <input type="file" className="hidden" accept="image/*" onChange={async (e) => {
-                                                 if(e.target.files && e.target.files[0]) {
-                                                     const url = await handleImageUpload(e.target.files[0]);
-                                                     if(url) setShowcaseFormData(prev => ({...prev, logoUrl: url}));
-                                                 }
-                                             }} />
-                                         </label>
-                                     </div>
+                                     <input type="text" name="logoUrl" value={showcaseFormData.logoUrl} onChange={handleShowcaseChange} required className="w-full mt-1 rounded-xl border p-2 border-gray-300" placeholder="https://..." />
+                                     <div className="mt-2 text-xs text-gray-400 font-medium tracking-wide">OR UPLOAD PHOTO (Recommended for Snapshots)</div>
+                                     <input 
+                                        type="file" 
+                                        accept="image/*"
+                                        onChange={async (e) => {
+                                            if(!e.target.files?.[0]) return;
+                                            const url = await handleImageUpload(e.target.files[0]);
+                                            if(url) setShowcaseFormData(prev => ({...prev, logoUrl: url}));
+                                        }} 
+                                        className="mt-1 text-xs text-gray-600 file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                                     />
                                  </div>
                                  {showcaseFormData.logoUrl && (
                                      <div className="mt-2 p-2 border rounded-lg w-fit">
@@ -1123,27 +1136,39 @@ export default function AdminDashboard() {
                                      <label className="block text-sm font-semibold text-gray-700">Showcase Title</label>
                                      <input type="text" name="title" value={highlightFormData.title} onChange={handleHighlightChange} required className="w-full mt-1 rounded-xl border p-2 border-gray-300" placeholder="e.g. Future Readiness Showcase" />
                                  </div>
+                                 <div className="grid grid-cols-3 gap-4">
+                                     <div>
+                                         <label className="block text-sm font-semibold text-gray-700">Year</label>
+                                         <input type="number" name="year" value={highlightFormData.year} onChange={handleHighlightChange} className="w-full mt-1 rounded-xl border p-2 border-gray-300" placeholder="e.g. 2024" />
+                                     </div>
+                                     <div>
+                                         <label className="block text-sm font-semibold text-gray-700">Date</label>
+                                         <input type="date" name="eventDate" value={highlightFormData.eventDate} onChange={handleHighlightChange} className="w-full mt-1 rounded-xl border p-2 border-gray-300" />
+                                     </div>
+                                     <div>
+                                         <label className="block text-sm font-semibold text-gray-700">Category</label>
+                                         <input type="text" name="category" value={highlightFormData.category} onChange={handleHighlightChange} className="w-full mt-1 rounded-xl border p-2 border-gray-300" placeholder="e.g. Event, Workshop" />
+                                     </div>
+                                 </div>
                                  <div>
                                      <label className="block text-sm font-semibold text-gray-700">Image URLs (One per line or comma separated)</label>
                                      <textarea name="images" value={highlightFormData.images} onChange={handleHighlightChange} rows={5} required className="w-full mt-1 rounded-xl border p-2 border-gray-300" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg" />
-                                     <div className="mt-2 flex justify-end">
-                                        <label className="cursor-pointer bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 px-3 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
-                                            <span>+ Upload Image</span>
-                                            <input type="file" className="hidden" accept="image/*" onChange={async (e) => {
-                                                if(e.target.files && e.target.files[0]) {
-                                                    const url = await handleImageUpload(e.target.files[0]);
-                                                    if(url) {
-                                                        const current = highlightFormData.images;
-                                                        setHighlightFormData(prev => ({
-                                                            ...prev, 
-                                                            images: current ? current + (current.endsWith('\n') || current === '' ? '' : '\n') + url : url
-                                                        }));
-                                                    }
-                                                }
-                                            }} />
-                                        </label>
-                                     </div>
-                                     <p className="text-xs text-gray-500 mt-1">These will be displayed as a gallery.</p>
+                                     
+                                     <div className="mt-2 text-xs text-gray-400 font-medium tracking-wide">OR UPLOAD & APPEND IMAGE</div>
+                                     <input 
+                                        type="file" 
+                                        accept="image/*"
+                                        onChange={async (e) => {
+                                            if(!e.target.files?.[0]) return;
+                                            const url = await handleImageUpload(e.target.files[0]);
+                                            if(url) setHighlightFormData(prev => ({
+                                                ...prev, 
+                                                images: prev.images ? `${prev.images}\n${url}` : url
+                                            }));
+                                        }} 
+                                        className="mt-1 text-xs text-gray-600 file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                                     />
+                                     <p className="text-xs text-gray-400 mt-1">These will be displayed as a gallery on the Events page.</p>
                                  </div>
                                  
                                  <div className="flex justify-end pt-2">
@@ -1227,18 +1252,18 @@ export default function AdminDashboard() {
                                  </div>
                                  <div>
                                      <label className="block text-sm font-semibold text-gray-700">Image URL</label>
-                                     <div className="flex gap-2 mt-1">
-                                        <input type="text" name="imageUrl" value={productFormData.imageUrl} onChange={handleProductChange} className="w-full rounded-xl border p-2 border-gray-300" placeholder="https://..." />
-                                        <label className="cursor-pointer bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 px-3 py-2 rounded-xl text-sm font-medium flex items-center">
-                                            <span>Upload</span>
-                                            <input type="file" className="hidden" accept="image/*" onChange={async (e) => {
-                                                if(e.target.files && e.target.files[0]) {
-                                                    const url = await handleImageUpload(e.target.files[0]);
-                                                    if(url) setProductFormData(prev => ({...prev, imageUrl: url}));
-                                                }
-                                            }} />
-                                        </label>
-                                     </div>
+                                     <input type="text" name="imageUrl" value={productFormData.imageUrl} onChange={handleProductChange} className="w-full mt-1 rounded-xl border p-2 border-gray-300" placeholder="https://..." />
+                                     <div className="mt-2 text-xs text-gray-400 font-medium tracking-wide">OR UPLOAD PRODUCT IMAGE</div>
+                                     <input 
+                                        type="file" 
+                                        accept="image/*"
+                                        onChange={async (e) => {
+                                            if(!e.target.files?.[0]) return;
+                                            const url = await handleImageUpload(e.target.files[0]);
+                                            if(url) setProductFormData(prev => ({...prev, imageUrl: url}));
+                                        }} 
+                                        className="mt-1 text-xs text-gray-600 file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                                     />
                                  </div>
                                  <div>
                                      <label className="block text-sm font-semibold text-gray-700">Description</label>

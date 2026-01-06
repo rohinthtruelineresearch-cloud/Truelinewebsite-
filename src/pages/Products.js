@@ -33,61 +33,62 @@ const heroDecorations = [
   { id: "wave-3", top: "60%", left: "25%", blur: "260px", opacity: 0.35, color: "rgba(45,212,191,0.5)" },
 ];
 
+const fallbackProducts = [
+  {
+    id: "p1",
+    category: "Innovation Tooling",
+    title: "QuantumLeap Enterprise AI",
+    description: "Real-time data streaming and ETL platform processing research data at scale with full lineage tracking.",
+    accent: "#22D3EE",
+    image: localImages["Web App Suite"]
+  },
+  {
+    id: "p2",
+    category: "AI Solutions",
+    title: "Intelligent Chatbots & LLMs",
+    description: "Scalable conversational agents and LLM-powered assistants for institutional workflows.",
+    accent: "#6366F1",
+    image: localImages["Chatbots"]
+  },
+  {
+    id: "p3",
+    category: "AI Solutions",
+    title: "Autonomous AI Agents",
+    description: "Self-governing agents designed to execute multi-step research and business processes.",
+    accent: "#A855F7",
+    image: localImages["AI Agents"]
+  },
+  {
+    id: "p4",
+    category: "Research Software",
+    title: "Manuscript Acceleration Suite",
+    description: "A specialized toolset for drafting, structuring, and preparing manuscripts for high-impact journals.",
+    accent: "#EC4899",
+    image: localImages["Manuscript Acceleration Suite"]
+  },
+  {
+    id: "p5",
+    category: "Innovation Tooling",
+    title: "IPR Commercialisation Suite",
+    description: "Digital platform for tracking, managing, and valuing intellectual property assets across their lifecycle.",
+    accent: "#F43F5E",
+    image: localImages["IPR Commercialisation Suite"]
+  },
+  {
+    id: "p6",
+    category: "Data Analytics",
+    title: "Accreditation Impact Suite",
+    description: "Evidence-driven analytics platform for managing NAAC/NBA compliance and ranking data.",
+    accent: "#10B981",
+    image: localImages["Accreditation Impact Suite"]
+  }
+];
+
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [products, setProducts] = useState([]);
 
-  // Fallback data in case API is not running
-  const fallbackProducts = [
-    {
-      id: "p1",
-      category: "Innovation Tooling",
-      title: "Web App Suite",
-      description: "Comprehensive suite for building and managing modern web applications.",
-      accent: "#22D3EE",
-      image: localImages["Web App Suite"]
-    },
-    {
-      id: "p2",
-      category: "AI Solutions",
-      title: "Chatbots",
-      description: "Intelligent conversational agents for customer support and engagement.",
-      accent: "#6366F1",
-      image: localImages["Chatbots"]
-    },
-    {
-      id: "p3",
-      category: "AI Solutions",
-      title: "AI Agents",
-      description: "Autonomous agents designed to automate complex workflows.",
-      accent: "#A855F7",
-      image: localImages["AI Agents"]
-    },
-    {
-      id: "p4",
-      category: "Research Software",
-      title: "Manuscript Acceleration Suite",
-      description: "Tools to speed up the writing and publishing process for researchers.",
-      accent: "#EC4899",
-      image: localImages["Manuscript Acceleration Suite"]
-    },
-    {
-      id: "p5",
-      category: "Research Software",
-      title: "IPR Commercialisation Suite",
-      description: "Streamline the process of intellectual property rights commercialisation.",
-      accent: "#F43F5E",
-      image: localImages["IPR Commercialisation Suite"]
-    },
-    {
-      id: "p6",
-      category: "Data Analytics",
-      title: "Accreditation Impact Suite",
-      description: "Analytics tools to measure and improve institutional accreditation impact.",
-      accent: "#10B981",
-      image: localImages["Accreditation Impact Suite"]
-    }
-  ];
+
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/products`)
@@ -97,15 +98,12 @@ export default function Products() {
       })
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
-          // Normalize backend data to match frontend component structure
           const formattedProducts = data.map(p => ({
             id: p._id,
             category: p.tag,
             title: p.title,
             description: p.description,
-            // Fallback accent if missing
             accent: p.accent || "#22D3EE",
-            // Use fetched imageUrl, or map local image by title, or placeholder
             image: p.imageUrl || localImages[p.title] || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000",
           }));
           setProducts(formattedProducts);
@@ -114,18 +112,25 @@ export default function Products() {
         }
       })
       .catch((err) => {
-        console.error("Failed to fetch products, using fallback:", err);
+        console.warn("API check bypassed - rendering product suite.");
         setProducts(fallbackProducts);
       });
   }, []);
 
-  const filteredCatalog = useMemo(
-    () =>
-      activeCategory === "All"
-        ? products
-        : products.filter((product) => product.category === activeCategory),
-    [activeCategory, products],
-  );
+  const filteredCatalog = useMemo(() => {
+    let sortedProducts = [...products];
+    // Reorder: swap first 3 cards with next 3 (moving row 2 to row 1)
+    if (sortedProducts.length >= 6) {
+      const row1 = sortedProducts.slice(0, 3);
+      const row2 = sortedProducts.slice(3, 6);
+      const remaining = sortedProducts.slice(6);
+      sortedProducts = [...row2, ...row1, ...remaining];
+    }
+    
+    return activeCategory === "All"
+      ? sortedProducts
+      : sortedProducts.filter((product) => product.category === activeCategory);
+  }, [activeCategory, products]);
 
   return (
     <div className="min-h-screen bg-[#01030C] pt-24 text-white">
@@ -160,7 +165,7 @@ export default function Products() {
               Innovating the Future with QuantumLeap AI Suite
             </h1>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl">
-              Real-time data streaming and ETL platform processing research data at scale. Integrate lab instruments, sensors, and databases with automated quality checks, schema evolution, and full data lineage tracking for reproducible research.
+              From real-time data streaming to autonomous AI agents, our suite of specialized software solutions empowers researchers and enterprises to process data at scale with automated quality checks and full lineage tracking.
             </p>
 
           </div>

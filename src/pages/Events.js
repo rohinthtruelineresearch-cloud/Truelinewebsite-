@@ -134,94 +134,109 @@ const highlightTiles = [
 
 const hostedEvents = [
   {
-    date: "June 2023",
-    title: "STARTNET & SALEM CHAPTER LAUNCH",
-    summary: "Launch event introducing STARTNET and the Salem chapter.",
+    date: "February 2026",
+    title: "INTERNATIONAL CONFERENCE ON INTEGRATED RESEARCH & INNOVATION (ICIRI–2026)",
+    summary: "Country: Thailand | Venue: Shinawatra University. Dates: 23 – 26 February, 2026.",
   },
   {
-    date: "July 2023",
-    title: "STARTCONNECT Monthly Networking Meeting",
-    summary: "Monthly networking meet-up for founders and professionals.",
+    date: "December 2025",
+    title: "Olimayam 4.0",
+    summary: "23-24 December 2025 at K.S. Rangasamy College of Technology, Tiruchengode, Namakkal.",
   },
   {
-    date: "May 2023",
-    title: "STARTNET ChatGPT & GenAI",
-    summary: "Session focused on ChatGPT and Generative AI.",
+    date: "October 2025",
+    title: "Global Startup Summit 2025",
+    summary: "October 9-10, 2025 at Codissia Trade Fair Complex, Coimbatore.",
   },
   {
-    date: "April 2023",
-    title: "STARTNET Connect Zoom Up Meeting",
-    summary: "Virtual Zoom catch-up under STARTNET Connect.",
+    date: "September 2025",
+    title: "VIBATHON 2025",
+    summary: "September 26th 2025 at K.S.R College of Engineering (Autonomous).",
   },
   {
-    date: "March 2023",
-    title: "STARTNET Master Class – Prompt Engineering",
-    summary: "Masterclass on prompt engineering techniques.",
+    date: "September 2025",
+    title: "AI Impact on Business & Society Symposium",
+    summary: "17th September 2025 at SakthiKailash Women’s College, Dharmapuri.",
   },
   {
-    date: "August 2023",
-    title: "STARTNET: Startup Tamilazh",
-    summary: "Startup-focused gathering under the Tamilazh banner.",
+    date: "August 2025",
+    title: "Innovation to Startup: Transforming Ideas into Enterprises",
+    summary: "August 26, 2025 at Madanapalle Institute of Technology & Science (MITS), Andhra Pradesh.",
   },
   {
-    date: "August 2023",
-    title: "STARTCONNECT Monthly Networking Meeting",
-    summary: "Monthly networking meeting for the community.",
+    date: "July 2025",
+    title: "Faculty Development Programme",
+    summary: "31 July 2025 at Sri Shanmugha Educational Institutions.",
   },
   {
-    date: "September 2023",
-    title: "STARTNET Connect Monthly Networking Meeting – Mega Pitching",
-    summary: "Networking meet featuring a mega pitching segment.",
+    date: "July 2025",
+    title: "MoU Signing Ceremony",
+    summary: "Service Collaboration MoU between Trueline Research and Sri Shanmugha Educational Institutions.",
   },
   {
-    date: "October 2023",
-    title: "STARTCONNECT Monthly Networking Meeting",
-    summary: "Monthly networking session.",
+    date: "July 2025",
+    title: "Research Revolution Session",
+    summary: "AI Technologies for Innovation, Startups & Academic Growth at Vivekananda College, Tiruchengode.",
   },
   {
-    date: "February 2023",
-    title: "STARTNET T2HUB Launching",
-    summary: "Launch of T2HUB under STARTNET.",
+    date: "April 2025",
+    title: "Demystifying Intellectual Property",
+    summary: "08.04.2025 at Seminar Hall, MGR Building. Rights, Protection, and Compliance.",
   },
   {
-    date: "November 2023",
-    title: "STARTCONNECT Monthly Networking Meeting",
-    summary: "Monthly networking session.",
+    date: "February 2025",
+    title: "SaaS.Connect: Agentic AI & SaaS in TN",
+    summary: "12th February 2025 at Sona Incubation Foundation, Salem.",
   },
   {
-    date: "January 2023",
-    title: "STARTCONNECT Blockchain Technology Investors Meet",
-    summary: "Investor-focused meetup on blockchain technology.",
+    date: "January 2025",
+    title: "Exclusive Business Networking Opportunity",
+    summary: "Thursday, January 30, 2025 at Hotel Radisson (Ball Room 3).",
   },
   {
-    date: "December 2023",
-    title: "STARTCONNECT Monthly Networking Meeting",
-    summary: "Monthly networking session.",
+    date: "November 2024",
+    title: "D2C Connect Summit & Expo 2024",
+    summary: "30 November 2024 at Le Meridien, Coimbatore.",
   },
   {
-    date: "December 2022",
-    title: "STARTNET Connect Digital Politics Conclave",
-    summary: "Conclave on digital politics themes.",
+    date: "October 2024",
+    title: "Diwali Kondattam",
+    summary: "25th October 2024 at Sona Incubation Foundation, Salem.",
   },
   {
-    date: "November 2022",
-    title: "STATNET Connect SaaS Master Class",
-    summary: "Masterclass focused on SaaS topics.",
+    date: "October 2024",
+    title: "NIRF Higher Ed Summit: Coimbatore 2024",
+    summary: "19 October 2024 at Hotel Le Meridien, Coimbatore.",
   },
   {
-    date: "October 2022",
-    title: "TN4STARTUP Cycle Rally",
-    summary: "Community cycle rally under TN4STARTUP.",
+    date: "October 2024",
+    title: "Patents in the Digital Age",
+    summary: "16.10.2024 at PG Auditorium, Sona College of Technology. Safeguarding IT Inventions.",
   },
   {
-    date: "September 2022",
-    title: "STARTNET Connect Digital Conclave Madurai",
-    summary: "Digital conclave hosted in Madurai.",
+    date: "October 2024",
+    title: "Building a Sustainable Startup",
+    summary: "10th October 2024 at Vel Tech's Institution's Innovation Council.",
   },
   {
-    date: "August 2022",
-    title: "STARTNET Connect GenAI Summit & Expo",
-    summary: "Summit and expo centered on Generative AI.",
+    date: "October 2024",
+    title: "AI Innovations Shaping the Future of IT",
+    summary: "October 8, 2024 at Selvam College of Technology (Autonomous), Namakkal.",
+  },
+  {
+    date: "September 2024",
+    title: "StartupTN Aadukalam 1.0 - Jury Member",
+    summary: "Idea Validation Pitching Event organized by StartupTN Salem Regional Hub on Sept 13, 2024.",
+  },
+  {
+    date: "September 2024",
+    title: "Execution of Innovative Ideas",
+    summary: "11.09.2024 at Salem Sowdeswari College (Women).",
+  },
+  {
+    date: "October 2025",
+    title: "Classroom to Global Stage",
+    summary: "Academic conference at Lincoln University, Malaysia.",
   },
 ];
 
@@ -243,13 +258,25 @@ export default function Events() {
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
-          const formatted = data.map(h => ({
-            title: h.title,
-            gallery: h.images,
-            image: h.images[0],
-            alt: h.title,
-            _id: h._id
-          }));
+          const formatted = data.map(h => {
+            const getFullUrl = (url) => {
+                if (!url) return "";
+                if (url.startsWith("http") || url.startsWith("data:")) return url;
+                return `${API_BASE_URL}/${url.replace(/^\//, "")}`;
+            };
+            
+            const images = (h.images || []).map(getFullUrl);
+            
+            return {
+              title: h.title,
+              gallery: images.length > 0 ? images : [a],
+              image: images.length > 0 ? images[0] : a,
+              alt: h.title,
+              _id: h._id,
+              year: h.year || "2024",
+              eventDate: h.eventDate
+            };
+          });
           setHighlights(formatted);
         } else {
           // Fallback to static if no dynamic data
@@ -275,6 +302,12 @@ export default function Events() {
         setProgrammes(hostedEvents);
       });
   }, []);
+
+  const [filterYear, setFilterYear] = useState("All");
+  
+  // Extract years and filter
+  const years = ["All", ...new Set(highlights.map(h => h.year).filter(Boolean))].sort((a,b) => b-a);
+  const filteredHighlights = filterYear === "All" ? highlights : highlights.filter(h => h.year == filterYear);
 
   useEffect(() => {
     if (!activeTile) return undefined;
@@ -320,19 +353,34 @@ export default function Events() {
 
       <section className="py-20" style={{ backgroundColor: "#04111F" }}>
         <div className="container mx-auto px-6 text-white">
-          <div className="mb-12 max-w-3xl space-y-3">
-            <span className="inline-flex items-center rounded-full border border-white/20 px-3 py-1 text-xs uppercase tracking-[0.35em] text-white/60">
-              Event highlights
-            </span>
-            <h2 className="text-3xl md:text-4xl font-semibold">Stories from our recent showcases</h2>
-            <p className="text-white/70 text-lg leading-relaxed">
-              A quick glimpse into the signature workshops, showcases, and partner programmes that shape Trueline
-              experiences.
-            </p>
+          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="max-w-3xl space-y-3">
+              <span className="inline-flex items-center rounded-full border border-white/20 px-3 py-1 text-xs uppercase tracking-[0.35em] text-white/60">
+                Event highlights
+              </span>
+              <h2 className="text-3xl md:text-4xl font-semibold">Stories from our recent showcases</h2>
+              <p className="text-white/70 text-lg leading-relaxed">
+                A quick glimpse into the signature workshops, showcases, and partner programmes that shape Trueline
+                experiences.
+              </p>
+            </div>
+            
+            {/* Year Filter Buttons */}
+            <div className="flex flex-wrap gap-2">
+                {years.map(year => (
+                    <button
+                        key={year}
+                        onClick={() => setFilterYear(year)}
+                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${filterYear === year ? 'bg-[#00A99D] text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
+                    >
+                        {year}
+                    </button>
+                ))}
+            </div>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {highlights.map((tile, index) => (
+            {filteredHighlights.map((tile, index) => (
               <article
                 key={`${tile.title}-${index}`}
                 className="group relative flex aspect-[4/3] flex-col overflow-hidden rounded-[30px] text-white shadow-[0_28px_80px_-40px_rgba(0,0,0,0.75)] cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-[#8ef1ff]/60"
@@ -356,7 +404,16 @@ export default function Events() {
                   style={{ backgroundImage: `url(${tile.image})` }}
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
-                <div className="relative z-10 mt-auto flex items-end p-6 md:p-8">
+                <div className="relative z-10 mt-auto flex flex-col items-start p-6 md:p-8">
+                  {tile.eventDate && (
+                    <span className="mb-2 inline-flex rounded-full bg-[#00A99D]/90 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+                      {new Date(tile.eventDate).toLocaleDateString(undefined, {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric"
+                      })}
+                    </span>
+                  )}
                   <h3 className="text-xl font-semibold leading-snug">{tile.title}</h3>
                 </div>
               </article>
@@ -473,7 +530,7 @@ export default function Events() {
                         <span className="grid h-6 w-6 place-items-center rounded-full border border-[#aac8e7] bg-white/70 text-[11px] font-semibold text-[#2a70a2]">
                           {String.fromCharCode(65 + (index % 26))}
                         </span>
-                        <span>{event.date === "—" ? "Coming soon" : event.date}</span>
+                        <span>{(!event.date || event.date === "—" || event.date.toLowerCase() === "coming soon") ? "TBA" : event.date}</span>
                       </div>
                       <h3 className="text-xl font-semibold leading-snug">{event.title}</h3>
                       <p className="text-sm leading-relaxed text-[#4a6a88]">{event.summary}</p>
