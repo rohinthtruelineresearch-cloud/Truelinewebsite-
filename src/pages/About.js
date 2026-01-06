@@ -162,7 +162,8 @@ export default function About() {
     if (showcases.length > 0) {
       return showcases.map(s => ({
         image: getImageUrl(s.logoUrl),
-        text: s.name
+        text: s.name,
+        subtitle: s.category || 'Institution'
       }));
     }
     return eventGalleryPool.length > 0 ? eventGalleryPool : fallbackEventGallery;

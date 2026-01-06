@@ -158,11 +158,13 @@ class Media {
     scene,
     screen,
     text,
+    subtitle,
     viewport,
     bend,
     textColor,
     borderRadius = 0,
     font,
+    container,
   }) {
     this.extra = 0;
     this.geometry = geometry;
@@ -174,15 +176,43 @@ class Media {
     this.scene = scene;
     this.screen = screen;
     this.text = text;
+    this.subtitle = subtitle;
     this.viewport = viewport;
     this.bend = bend;
     this.textColor = textColor;
     this.borderRadius = borderRadius;
     this.font = font;
+    this.container = container;
     this.createShader();
     this.createMesh();
     // this.createTitle();
+    this.createHoverOverlay();
     this.onResize();
+  }
+
+  createHoverOverlay() {
+    // Create overlay element
+    this.overlay = document.createElement('div');
+    this.overlay.style.position = 'absolute';
+    this.overlay.style.background = 'rgba(0, 0, 0, 0.85)';
+    this.overlay.style.color = 'white';
+    this.overlay.style.padding = '20px';
+    this.overlay.style.borderRadius = '10px';
+    this.overlay.style.pointerEvents = 'none';
+    this.overlay.style.opacity = '0';
+    this.overlay.style.transition = 'opacity 0.3s ease';
+    this.overlay.style.zIndex = '1000';
+    this.overlay.style.textAlign = 'center';
+    this.overlay.style.maxWidth = '300px';
+    
+    const subtitleHTML = this.subtitle ? `<div style="font-size: 14px; color: rgba(255,255,255,0.8); margin-top: 4px;">${this.subtitle}</div>` : '';
+    
+    this.overlay.innerHTML = `
+      <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">${this.text}</div>
+      ${subtitleHTML}
+    `;
+    this.container.style.position = 'relative';
+    this.container.appendChild(this.overlay);
   }
 
   createShader() {
@@ -278,7 +308,7 @@ class Media {
     });
   }
 
-  update(scroll, direction) {
+  update(scroll, direction, mouseX, mouseY) {
     this.plane.position.x = this.x - scroll.current - this.extra;
 
     const x = this.plane.position.x;
@@ -318,6 +348,39 @@ class Media {
       this.extra += this.widthTotal;
       this.isBefore = this.isAfter = false;
     }
+
+    // Update overlay position and visibility
+    this.updateOverlay(mouseX, mouseY);
+  }
+
+  updateOverlay(mouseX, mouseY) {
+    if (!this.overlay || !this.screen) return;
+
+    // Calculate screen position of the plane
+    const canvasBounds = this.container.getBoundingClientRect();
+    
+    // Convert viewport coordinates to screen coordinates
+    const screenX = ((this.plane.position.x / this.viewport.width) * this.screen.width) + (this.screen.width / 2);
+    const screenY = ((this.plane.position.y / this.viewport.height) * this.screen.height) + (this.screen.height / 2);
+    
+    const planeWidthScreen = (this.plane.scale.x / this.viewport.width) * this.screen.width;
+    const planeHeightScreen = (this.plane.scale.y / this.viewport.height) * this.screen.height;
+
+    // Check if mouse is over this plane
+    const isHovering = mouseX !== null && mouseY !== null &&
+      mouseX >= screenX - planeWidthScreen / 2 &&
+      mouseX <= screenX + planeWidthScreen / 2 &&
+      mouseY >= screenY - planeHeightScreen / 2 &&
+      mouseY <= screenY + planeHeightScreen / 2;
+
+    if (isHovering) {
+      this.overlay.style.opacity = '1';
+      this.overlay.style.left = `${mouseX}px`;
+      this.overlay.style.top = `${mouseY - 80}px`;
+      this.overlay.style.transform = 'translateX(-50%)';
+    } else {
+      this.overlay.style.opacity = '0';
+    }
   }
 
   onResize({ screen, viewport } = {}) {
@@ -356,6 +419,8 @@ class App {
     this.container = container;
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
+    this.mouseX = null;
+    this.mouseY = null;
     this.onCheckDebounce = debounce(this.onCheck, 200);
     this.createRenderer();
     this.createCamera();
@@ -423,11 +488,13 @@ class App {
         scene: this.scene,
         screen: this.screen,
         text: data.text,
+        subtitle: data.subtitle,
         viewport: this.viewport,
         bend,
         textColor,
         borderRadius,
         font,
+        container: this.container,
       });
     });
   }
@@ -486,11 +553,22 @@ class App {
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? "right" : "left";
     if (this.medias) {
-      this.medias.forEach((media) => media.update(this.scroll, direction));
+      this.medias.forEach((media) => media.update(this.scroll, direction, this.mouseX, this.mouseY));
     }
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
     this.raf = window.requestAnimationFrame(this.update.bind(this));
+  }
+
+  onMouseMove(e) {
+    const rect = this.container.getBoundingClientRect();
+    this.mouseX = e.clientX - rect.left;
+    this.mouseY = e.clientY - rect.top;
+  }
+
+  onMouseLeave() {
+    this.mouseX = null;
+    this.mouseY = null;
   }
 
   addEventListeners() {
@@ -499,6 +577,8 @@ class App {
     this.boundOnTouchDown = this.onTouchDown.bind(this);
     this.boundOnTouchMove = this.onTouchMove.bind(this);
     this.boundOnTouchUp = this.onTouchUp.bind(this);
+    this.boundOnMouseMove = this.onMouseMove.bind(this);
+    this.boundOnMouseLeave = this.onMouseLeave.bind(this);
     window.addEventListener("resize", this.boundOnResize);
     window.addEventListener("mousewheel", this.boundOnWheel);
     window.addEventListener("wheel", this.boundOnWheel);
@@ -508,6 +588,8 @@ class App {
     window.addEventListener("touchstart", this.boundOnTouchDown);
     window.addEventListener("touchmove", this.boundOnTouchMove);
     window.addEventListener("touchend", this.boundOnTouchUp);
+    this.container.addEventListener("mousemove", this.boundOnMouseMove);
+    this.container.addEventListener("mouseleave", this.boundOnMouseLeave);
   }
 
   destroy() {
@@ -521,6 +603,20 @@ class App {
     window.removeEventListener("touchstart", this.boundOnTouchDown);
     window.removeEventListener("touchmove", this.boundOnTouchMove);
     window.removeEventListener("touchend", this.boundOnTouchUp);
+    if (this.boundOnMouseMove) {
+      this.container.removeEventListener("mousemove", this.boundOnMouseMove);
+    }
+    if (this.boundOnMouseLeave) {
+      this.container.removeEventListener("mouseleave", this.boundOnMouseLeave);
+    }
+    // Clean up overlays
+    if (this.medias) {
+      this.medias.forEach((media) => {
+        if (media.overlay && media.overlay.parentNode) {
+          media.overlay.parentNode.removeChild(media.overlay);
+        }
+      });
+    }
     if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
       this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas);
     }
