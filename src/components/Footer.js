@@ -35,12 +35,12 @@ const quickLinks = [
 const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com",
+    href: "https://in.linkedin.com/company/trueline-research-private-limited",
     icon: <Linkedin size={20} />,
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com",
+    href: "https://www.instagram.com/trueline_research/",
     icon: <Instagram size={20} />,
   },
   {
